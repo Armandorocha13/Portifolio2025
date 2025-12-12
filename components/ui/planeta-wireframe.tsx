@@ -20,7 +20,7 @@ interface PropsPlanetaRotacionando {
  */
 export default function PlanetaRotacionando({ width = 800, height = 600, className = "" }: PropsPlanetaRotacionando) {
   const refCanvas = useRef<HTMLCanvasElement>(null)
-  const [estaCarregando, setEstaCarregando] = useState(true)
+  const [, setEstaCarregando] = useState(true)
   const [erro, setErro] = useState<string | null>(null)
 
   useEffect(() => {

@@ -5,7 +5,6 @@ import {
   Code, 
   Database, 
   Cloud, 
-  Palette, 
   Terminal, 
   GitBranch,
   Zap,
@@ -15,7 +14,6 @@ import {
   Languages,
   Briefcase,
   Users,
-  FileText,
 } from "lucide-react";
 
 /**
