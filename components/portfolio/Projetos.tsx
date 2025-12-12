@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { ExternalLink, Github, ArrowUpRight, ShoppingCart, CheckSquare, BarChart3 } from "lucide-react";
+import { useRef } from "react";
+import { ExternalLink, Github, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RolagemFixa } from "@/components/ui/sticky-scroll-reveal";
 
@@ -12,54 +12,25 @@ import { RolagemFixa } from "@/components/ui/sticky-scroll-reveal";
  */
 const projetos = [
   {
-    titulo: "E-commerce Platform",
+    titulo: "Finance.io",
     descricao:
-      "Plataforma completa de e-commerce com carrinho, pagamentos e dashboard administrativo. Arquitetura escalável e performance otimizada.",
-    tags: ["React", "Node.js", "PostgreSQL", "Stripe"],
+      "Aplicação web moderna para gerenciamento financeiro pessoal. Funcionalidades: gestão de transações (entradas e saídas), dashboard com gráficos interativos, categorias personalizadas, relatórios com IA e controle de artilharia (gols).",
+    tags: ["React", "TypeScript", "Supabase", "Dashboard"],
     imagem: "/placeholder.svg",
     github: "#",
     demo: "#",
     destaque: true,
   },
   {
-    titulo: "Task Management App",
+    titulo: "Sistema de Ordem de Serviço (OS) " ,
     descricao:
-      "Aplicativo de gerenciamento de tarefas com drag-and-drop, colaboração em tempo real e integrações com ferramentas populares.",
-    tags: ["Next.js", "TypeScript", "Prisma", "WebSocket"],
+      "Sistema completo de gerenciamento de Ordens de Serviço para loja de informática. Inclui CRUD de clientes, produtos e ordens de serviço, login com validação, relatórios e controle de acesso por perfil de usuário.",
+    tags: ["Java", "Maven", "MySQL", "JDBC", "Swing", "JFrame"],
     imagem: "/placeholder.svg",
     github: "#",
     demo: "#",
     destaque: true,
-  },
-  {
-    titulo: "Social Media Dashboard",
-    descricao:
-      "Dashboard completo para gerenciamento de redes sociais com analytics em tempo real, agendamento de posts e métricas detalhadas de engajamento.",
-    tags: ["React", "TypeScript", "Chart.js", "REST API"],
-    imagem: "/placeholder.svg",
-    github: "#",
-    demo: "#",
-    destaque: true,
-  },
-  {
-    titulo: "Analytics Dashboard",
-    descricao:
-      "Dashboard de analytics com visualizações interativas, relatórios automatizados e exportação de dados.",
-    tags: ["React", "D3.js", "Python", "FastAPI"],
-    imagem: "/placeholder.svg",
-    github: "#",
-    demo: "#",
-    destaque: false,
-  },
-  {
-    titulo: "Real-time Chat",
-    descricao:
-      "Sistema de chat em tempo real com salas, mensagens privadas e compartilhamento de arquivos.",
-    tags: ["React", "Socket.io", "Redis", "MongoDB"],
-    imagem: "/placeholder.svg",
-    github: "#",
-    demo: "#",
-    destaque: false,
+    emManutencao: true,
   },
 ];
 
@@ -107,46 +78,43 @@ const Projetos = () => {
               .map((projeto, indice) => ({
                 titulo: projeto.titulo,
                 descricao: projeto.descricao,
+                tags: projeto.tags,
+                emManutencao: projeto.emManutencao || false,
                 conteudo: (
-                  <div className="h-full w-full flex flex-col items-center justify-center text-white overflow-hidden relative">
-                    {/* Imagem de Fundo */}
-                    <img
-                      src={indice === 0 
-                        ? 'https://images.unsplash.com/photo-1556740758-90de374c12ad?w=800&h=600&fit=crop&q=80'
-                        : indice === 1 
-                        ? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80'
-                        : 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80'
-                      }
-                      alt={projeto.titulo}
-                      className="absolute inset-0 w-full h-full object-cover opacity-30"
-                    />
-                    {/* Overlay de Gradiente */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-black/60 to-black/40" />
+                  <div className="h-full w-full flex flex-col bg-background overflow-hidden relative">
+                    {/* Badge de Manutenção no card */}
+                    {projeto.emManutencao && (
+                      <div className="absolute top-4 right-4 z-10 px-3 py-1.5 text-xs font-semibold bg-amber-500/20 text-amber-400 rounded-full border border-amber-500/30 flex items-center gap-1.5 backdrop-blur-sm">
+                        <Wrench className="h-3 w-3" />
+                        <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse"></span>
+                        Em Manutenção
+                      </div>
+                    )}
                     
-                    {/* Conteúdo */}
-                    <div className="relative z-10 flex flex-col items-center justify-center p-8 h-full w-full">
-                      <div className="mb-4">
-                        {indice === 0 && <ShoppingCart className="h-16 w-16 mx-auto mb-4" />}
-                        {indice === 1 && <CheckSquare className="h-16 w-16 mx-auto mb-4" />}
-                        {indice === 2 && <BarChart3 className="h-16 w-16 mx-auto mb-4" />}
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4 text-center">{projeto.titulo}</h3>
-                      <div className="flex flex-wrap gap-2 justify-center mb-4">
-                        {projeto.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 text-xs font-mono bg-white/20 rounded-full text-white backdrop-blur-sm"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex gap-3 mt-4">
-                        <Button size="sm" variant="outline" className="gap-2 bg-white/10 border-white/20 text-white hover:bg-white/20">
+                    {/* Imagem Limpa */}
+                    <div className="relative w-full h-64 overflow-hidden">
+                      <img
+                        src={indice === 0 
+                          ? 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&q=80'
+                          : 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80'
+                        }
+                        alt={projeto.titulo}
+                        className="w-full h-full object-cover"
+                      />
+                      {projeto.emManutencao && (
+                        <div className="absolute inset-0 bg-black/40"></div>
+                      )}
+                    </div>
+                    
+                    {/* Conteúdo abaixo da imagem */}
+                    <div className="flex flex-col flex-1 p-6 justify-end">
+                      {/* Botões */}
+                      <div className="flex gap-3">
+                        <Button size="sm" variant="outline" className="gap-2" disabled={projeto.emManutencao}>
                           <Github className="h-4 w-4" />
                           Code
                         </Button>
-                        <Button size="sm" className="gap-2 bg-white text-gray-900 hover:bg-white/90">
+                        <Button size="sm" className="gap-2" disabled={projeto.emManutencao}>
                           <ExternalLink className="h-4 w-4" />
                           Demo
                         </Button>
@@ -159,60 +127,6 @@ const Projetos = () => {
           />
         </motion.div>
 
-        {/* Other Projects Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={estaVisivel ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-        >
-          <h3 className="text-center mono mb-8">Outros Projetos Notáveis</h3>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {projetos
-              .filter((p) => !p.destaque)
-              .map((projeto) => (
-                <div
-                  key={projeto.titulo}
-                  className="group p-6 rounded-2xl border border-border bg-card/50 card-hover"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <h4 className="font-semibold text-lg group-hover:text-foreground transition-colors">
-                      {projeto.titulo}
-                    </h4>
-                    <div className="flex gap-2">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 hover:bg-muted"
-                      >
-                        <Github className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 hover:bg-muted"
-                      >
-                        <ArrowUpRight className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {projeto.descricao}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {projeto.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs font-mono text-muted-foreground"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

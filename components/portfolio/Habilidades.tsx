@@ -12,6 +12,10 @@ import {
   Monitor,
   Server,
   Settings,
+  Languages,
+  Briefcase,
+  Users,
+  FileText,
 } from "lucide-react";
 
 /**
@@ -19,61 +23,121 @@ import {
  * Cada habilidade contém título, descrição e ícone
  */
 const dadosHabilidades = [
+  // Linguagens
   {
-    titulo: "React",
-    descricao: "Desenvolvimento de interfaces modernas e responsivas com React, hooks, context API e gerenciamento de estado avançado.",
-    categoria: "Frontend",
+    titulo: "Java",
+    descricao: "Desenvolvimento de aplicações desktop e backend com Java, utilizando orientação a objetos e boas práticas.",
+    categoria: "Linguagens",
     icone: Code,
-    nivel: 95,
-  },
-  {
-    titulo: "TypeScript",
-    descricao: "TypeScript para desenvolvimento type-safe, melhorando a qualidade e manutenibilidade do código.",
-    categoria: "Frontend",
-    icone: Code,
-    nivel: 90,
-  },
-  {
-    titulo: "Node.js",
-    descricao: "Desenvolvimento de APIs RESTful e GraphQL, microserviços e aplicações server-side escaláveis.",
-    categoria: "Backend",
-    icone: Terminal,
-    nivel: 88,
-  },
-  {
-    titulo: "PostgreSQL",
-    descricao: "Design de bancos de dados relacionais, otimização de queries e gerenciamento de dados complexos.",
-    categoria: "Backend",
-    icone: Database,
     nivel: 85,
   },
   {
-    titulo: "Tailwind CSS",
-    descricao: "Criação de designs modernos e responsivos com utility-first CSS, design systems e componentes reutilizáveis.",
-    categoria: "Frontend",
-    icone: Palette,
-    nivel: 92,
+    titulo: "JavaScript (Node)",
+    descricao: "Desenvolvimento frontend e backend com JavaScript e Node.js, criando aplicações interativas e dinâmicas.",
+    categoria: "Linguagens",
+    icone: Code,
+    nivel: 80,
+  },
+  // Frameworks e Tecnologias
+  {
+    titulo: "React.js",
+    descricao: "Desenvolvimento de interfaces modernas e responsivas com React, hooks e gerenciamento de estado.",
+    categoria: "Frameworks e Tecnologias",
+    icone: Monitor,
+    nivel: 80,
   },
   {
-    titulo: "Docker",
-    descricao: "Containerização de aplicações, orquestração e deployment em ambientes de produção.",
-    categoria: "DevOps",
-    icone: Cloud,
+    titulo: "Swing (JFrame)",
+    descricao: "Desenvolvimento de interfaces gráficas desktop com Java Swing para aplicações desktop.",
+    categoria: "Frameworks e Tecnologias",
+    icone: Monitor,
     nivel: 75,
   },
   {
-    titulo: "Git",
-    descricao: "Controle de versão, branching strategies, CI/CD e workflows colaborativos.",
-    categoria: "DevOps",
+    titulo: "JDBC",
+    descricao: "Integração de aplicações Java com bancos de dados relacionais utilizando JDBC.",
+    categoria: "Frameworks e Tecnologias",
+    icone: Database,
+    nivel: 80,
+  },
+  {
+    titulo: "REST API",
+    descricao: "Desenvolvimento e consumo de APIs RESTful para integração entre sistemas.",
+    categoria: "Frameworks e Tecnologias",
+    icone: Terminal,
+    nivel: 75,
+  },
+  {
+    titulo: "Git & GitHub",
+    descricao: "Controle de versão, gerenciamento de código e colaboração em projetos com Git e GitHub.",
+    categoria: "Frameworks e Tecnologias",
     icone: GitBranch,
+    nivel: 85,
+  },
+  // TI e Infraestrutura
+  {
+    titulo: "Suporte Técnico",
+    descricao: "Prestação de suporte técnico, resolução de problemas e atendimento ao usuário.",
+    categoria: "TI e Infraestrutura",
+    icone: Settings,
+    nivel: 85,
+  },
+  {
+    titulo: "Redes",
+    descricao: "Conhecimento em configuração e manutenção de redes de computadores.",
+    categoria: "TI e Infraestrutura",
+    icone: Cloud,
+    nivel: 70,
+  },
+  {
+    titulo: "Sistemas Operacionais",
+    descricao: "Conhecimento em administração e configuração de sistemas operacionais.",
+    categoria: "TI e Infraestrutura",
+    icone: Server,
+    nivel: 75,
+  },
+  {
+    titulo: "Governança de TI",
+    descricao: "Conhecimento em práticas de governança, políticas e processos de TI.",
+    categoria: "TI e Infraestrutura",
+    icone: Settings,
+    nivel: 70,
+  },
+  // Soft Skills
+  {
+    titulo: "Comunicação",
+    descricao: "Habilidade em comunicação clara e eficaz, tanto escrita quanto verbal.",
+    categoria: "Soft Skills",
+    icone: Users,
     nivel: 90,
   },
   {
-    titulo: "Framer Motion",
-    descricao: "Animações fluidas e interativas para criar experiências de usuário envolventes e modernas.",
-    categoria: "Frontend",
+    titulo: "Trabalho em Equipe",
+    descricao: "Colaboração eficiente em equipes multidisciplinares, contribuindo para objetivos comuns.",
+    categoria: "Soft Skills",
+    icone: Users,
+    nivel: 90,
+  },
+  {
+    titulo: "Proatividade",
+    descricao: "Iniciativa para identificar e resolver problemas, antecipando necessidades.",
+    categoria: "Soft Skills",
     icone: Zap,
     nivel: 85,
+  },
+  {
+    titulo: "Atendimento ao Cliente",
+    descricao: "Excelência no atendimento ao cliente, garantindo satisfação e resolução de demandas.",
+    categoria: "Soft Skills",
+    icone: Users,
+    nivel: 90,
+  },
+  {
+    titulo: "Organização",
+    descricao: "Capacidade de organização e planejamento para otimizar processos e resultados.",
+    categoria: "Soft Skills",
+    icone: Briefcase,
+    nivel: 90,
   },
 ];
 
@@ -94,9 +158,10 @@ const Habilidades = () => {
   const categorias = Array.from(new Set(dadosHabilidades.map(habilidade => habilidade.categoria)));
 
   const iconesCategoria: Record<string, typeof Code> = {
-    'Frontend': Monitor,
-    'Backend': Server,
-    'DevOps': Settings,
+    'Linguagens': Languages,
+    'Frameworks e Tecnologias': Monitor,
+    'TI e Infraestrutura': Server,
+    'Soft Skills': Users,
   };
 
   const lidarVirarCartao = (categoria: string) => {
@@ -129,11 +194,11 @@ const Habilidades = () => {
             <span className="text-muted-foreground">domino</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl">
-            Um conjunto de ferramentas e tecnologias que utilizo para criar soluções modernas e eficientes.
+            Conjunto de habilidades técnicas, ferramentas e competências que utilizo para desenvolver soluções e prestar serviços de qualidade.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {categorias.map((categoria, indiceCategoria) => {
             const habilidadesCategoria = dadosHabilidades.filter(habilidade => habilidade.categoria === categoria);
             
@@ -146,7 +211,7 @@ const Habilidades = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={estaVisivel ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: indiceCategoria * 0.15 }}
-                className="w-full h-full min-h-[350px] perspective-1000"
+                className="w-full h-full min-h-[220px] max-h-[350px] perspective-1000"
                 style={{ perspective: '1000px' }}
               >
                 <motion.div
@@ -164,12 +229,12 @@ const Habilidades = () => {
                 >
                   {/* Front Side - Icon */}
                   <div
-                    className="absolute inset-0 w-full h-full backface-hidden rounded-2xl cursor-pointer overflow-hidden"
-                    style={{ backfaceVisibility: 'hidden', transform: 'rotateY(0deg)' }}
+                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl cursor-pointer overflow-hidden"
+                      style={{ backfaceVisibility: 'hidden', transform: 'rotateY(0deg)' }}
                   >
                     {/* Silver border effect */}
                     <div 
-                      className="absolute inset-0 rounded-2xl pointer-events-none"
+                      className="absolute inset-0 rounded-xl pointer-events-none"
                       style={{
                         background: 'linear-gradient(90deg, #94a3b8, #e2e8f0, #94a3b8)',
                         backgroundSize: '200% 100%',
@@ -180,23 +245,23 @@ const Habilidades = () => {
                         mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                         maskComposite: 'exclude',
                       }}
-                    >
-                      <div className="w-full h-full rounded-2xl bg-card/20"></div>
+                      >
+                      <div className="w-full h-full rounded-xl bg-card/20"></div>
                     </div>
                     
-                    <div className="flex items-center justify-center h-full p-4 relative z-10">
-                      <IconeCategoria className="h-24 w-24 text-foreground/40" />
+                    <div className="flex items-center justify-center h-full p-2 relative z-10">
+                      <IconeCategoria className="h-12 w-12 text-foreground/40" />
                     </div>
                   </div>
 
                   {/* Back Side - Skills */}
                   <div
-                    className="absolute inset-0 w-full h-full backface-hidden rounded-2xl cursor-pointer overflow-hidden"
+                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl cursor-pointer overflow-hidden"
                     style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
                   >
                     {/* Silver border effect */}
                     <div 
-                      className="absolute inset-0 rounded-2xl pointer-events-none"
+                      className="absolute inset-0 rounded-xl pointer-events-none"
                       style={{
                         background: 'linear-gradient(90deg, #94a3b8, #e2e8f0, #94a3b8)',
                         backgroundSize: '200% 100%',
@@ -207,36 +272,28 @@ const Habilidades = () => {
                         mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                         maskComposite: 'exclude',
                       }}
-                    >
-                      <div className="w-full h-full rounded-2xl bg-card/20"></div>
+                      >
+                      <div className="w-full h-full rounded-xl bg-card/20"></div>
                     </div>
-                    <div className="flex flex-col h-full p-4 relative z-10">
-                      <h3 className="text-lg font-medium mb-8 text-foreground">{categoria}</h3>
+                    <div className="flex flex-col h-full p-3 relative z-10">
+                      <h3 className="text-sm font-semibold mb-2 text-foreground border-b border-border/50 pb-1.5">
+                        {categoria}
+                      </h3>
                       
-                      <div className="flex flex-col gap-5 flex-grow">
+                      <div className="flex flex-col gap-1.5 flex-grow overflow-y-auto">
                         {habilidadesCategoria.map((habilidade, indiceHabilidade) => {
                           return (
-                            <div
+                            <motion.div
                               key={habilidade.titulo}
-                              className="space-y-1.5"
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={estaVisivel ? { opacity: 1, x: 0 } : {}}
+                              transition={{ duration: 0.4, delay: indiceCategoria * 0.15 + indiceHabilidade * 0.05 }}
+                              className="flex items-center py-1 px-1.5 rounded-md hover:bg-accent/30 transition-colors"
                             >
-                              <div className="flex items-center justify-between">
-                                <span className="text-sm text-foreground/80">
-                                  {habilidade.titulo}
-                                </span>
-                                <span className="text-xs text-muted-foreground font-mono">
-                                  {habilidade.nivel}%
-                                </span>
-                              </div>
-                              <div className="h-0.5 bg-muted/30 rounded-full overflow-hidden">
-                                <motion.div
-                                  className="h-full bg-foreground/30 rounded-full"
-                                  initial={{ width: 0 }}
-                                  animate={estaVisivel ? { width: `${habilidade.nivel}%` } : { width: 0 }}
-                                  transition={{ duration: 1, delay: indiceCategoria * 0.15 + indiceHabilidade * 0.1 + 0.3 }}
-                                />
-                              </div>
-                            </div>
+                              <span className="text-xs font-medium text-foreground/90 leading-tight">
+                                {habilidade.titulo}
+                              </span>
+                            </motion.div>
                           );
                         })}
                       </div>

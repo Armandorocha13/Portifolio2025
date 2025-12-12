@@ -20,6 +20,8 @@ export const RolagemFixa = ({
   conteudo: {
     titulo: string;
     descricao: string;
+    tags?: string[];
+    emManutencao?: boolean;
     conteudo?: React.ReactNode | any;
   }[];
   classeNomeConteudo?: string;
@@ -73,17 +75,33 @@ export const RolagemFixa = ({
         <div className="max-w-2xl">
           {conteudo.map((item, indice) => (
             <div key={item.titulo + indice} className="my-20">
-              <motion.h2
-                initial={{
-                  opacity: 0,
-                }}
-                animate={{
-                  opacity: cardAtivo === indice ? 1 : 0.3,
-                }}
-                className="text-2xl font-bold text-slate-100"
-              >
-                {item.titulo}
-              </motion.h2>
+              <div className="flex items-center gap-3">
+                <motion.h2
+                  initial={{
+                    opacity: 0,
+                  }}
+                  animate={{
+                    opacity: cardAtivo === indice ? 1 : 0.3,
+                  }}
+                  className="text-2xl font-bold text-slate-100"
+                >
+                  {item.titulo}
+                </motion.h2>
+                {item.emManutencao && (
+                  <motion.span
+                    initial={{
+                      opacity: 0,
+                    }}
+                    animate={{
+                      opacity: cardAtivo === indice ? 1 : 0.3,
+                    }}
+                    className="px-3 py-1 text-xs font-semibold bg-amber-500/20 text-amber-400 rounded-full border border-amber-500/30 flex items-center gap-1.5"
+                  >
+                    <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+                    Em Manutenção
+                  </motion.span>
+                )}
+              </div>
               <motion.p
                 initial={{
                   opacity: 0,
@@ -95,6 +113,26 @@ export const RolagemFixa = ({
               >
                 {item.descricao}
               </motion.p>
+              {item.tags && item.tags.length > 0 && (
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                  }}
+                  animate={{
+                    opacity: cardAtivo === indice ? 1 : 0.3,
+                  }}
+                  className="flex flex-wrap gap-2 mt-6"
+                >
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 text-xs font-mono bg-slate-800/50 text-slate-200 rounded-md border border-slate-700/50"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </motion.div>
+              )}
             </div>
           ))}
           <div className="h-40" />
