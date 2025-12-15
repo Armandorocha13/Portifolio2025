@@ -1,11 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Send, Mail, MapPin, ArrowUpRight, Linkedin, Github, MessageCircle } from "lucide-react";
+import { useRef } from "react";
+import { Mail, MapPin, ArrowUpRight, Linkedin, Github, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
 
 /**
  * Componente Contato - Seção de Contato
@@ -17,28 +14,6 @@ const Contato = () => {
   const ref = useRef(null);
   // Detecta se a seção está visível na viewport (apenas uma vez)
   const estaVisivel = useInView(ref, { once: true, margin: "-100px" });
-  const { toast } = useToast();
-  // Estado para controlar o carregamento do formulário
-  const [estaEnviando, setEstaEnviando] = useState(false);
-
-  /**
-   * Handler para submissão do formulário de contato
-   * @param e - Evento do formulário
-   */
-  const lidarComEnvio = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setEstaEnviando(true);
-    
-    // Simula o envio do formulário (substituir por integração real com API)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Mensagem enviada!",
-      description: "Obrigado pelo contato. Retornarei em breve.",
-    });
-    
-    setEstaEnviando(false);
-  };
 
   return (
     <section id="contato" className="section-padding bg-gradient-to-b from-background via-card/20 to-background" ref={ref}>
@@ -64,75 +39,12 @@ const Contato = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={estaVisivel ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          >
-            <form onSubmit={lidarComEnvio} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="mono text-xs mb-2 block">Nome</label>
-                  <Input
-                    placeholder="Seu nome"
-                    className="bg-card border-border focus:border-foreground/50"
-                    required
-                  />
-                </div>
-                <div>
-                  <label className="mono text-xs mb-2 block">Email</label>
-                  <Input
-                    type="email"
-                    placeholder="seu@email.com"
-                    className="bg-card border-border focus:border-foreground/50"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="mono text-xs mb-2 block">Assunto</label>
-                <Input
-                  placeholder="Sobre o que você gostaria de falar?"
-                  className="bg-card border-border focus:border-foreground/50"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="mono text-xs mb-2 block">Mensagem</label>
-                <Textarea
-                  placeholder="Conte-me mais sobre seu projeto..."
-                  className="bg-card border-border focus:border-foreground/50 min-h-[150px] resize-none"
-                  required
-                />
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full sm:w-auto group"
-                disabled={estaEnviando}
-              >
-                {estaEnviando ? (
-                  "Enviando..."
-                ) : (
-                  <>
-                    Enviar Mensagem
-                    <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </>
-                )}
-              </Button>
-            </form>
-          </motion.div>
-
+        <div className="max-w-2xl mx-auto">
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={estaVisivel ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={estaVisivel ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="space-y-8"
           >
             <div>
@@ -140,7 +52,7 @@ const Contato = () => {
               
               <div className="space-y-4 mb-8">
                 <a
-                  href="mailto:seu@email.com"
+                  href="mailto:mandoqxo@gmail.com"
                   className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card/50 group card-hover"
                 >
                   <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors">
@@ -148,7 +60,7 @@ const Contato = () => {
                   </div>
                   <div>
                     <p className="mono text-xs mb-1">Email</p>
-                    <p className="text-foreground">seu@email.com</p>
+                    <p className="text-foreground">mandoqxo@gmail.com</p>
                   </div>
                   <ArrowUpRight className="ml-auto h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                 </a>
@@ -159,7 +71,7 @@ const Contato = () => {
                   </div>
                   <div>
                     <p className="mono text-xs mb-1">Localização</p>
-                    <p className="text-foreground">São Paulo, Brasil</p>
+                    <p className="text-foreground">Rio de Janeiro, Brasil</p>
                   </div>
                 </div>
               </div>
