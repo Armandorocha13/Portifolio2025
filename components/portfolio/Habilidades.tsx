@@ -228,7 +228,7 @@ const Habilidades = () => {
                   {/* Front Side - Icon */}
                   <div
                     className="absolute inset-0 w-full h-full backface-hidden rounded-xl cursor-pointer overflow-hidden"
-                      style={{ backfaceVisibility: 'hidden', transform: 'rotateY(0deg)' }}
+                    style={{ backfaceVisibility: 'hidden', transform: 'rotateY(0deg)' }}
                   >
                     {/* Silver border effect */}
                     <div 
@@ -243,7 +243,7 @@ const Habilidades = () => {
                         mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                         maskComposite: 'exclude',
                       }}
-                      >
+                    >
                       <div className="w-full h-full rounded-xl bg-card/20"></div>
                     </div>
                     
@@ -270,7 +270,7 @@ const Habilidades = () => {
                         mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                         maskComposite: 'exclude',
                       }}
-                      >
+                    >
                       <div className="w-full h-full rounded-xl bg-card/20"></div>
                     </div>
                     <div className="flex flex-col h-full p-3 relative z-10">
@@ -289,8 +289,8 @@ const Habilidades = () => {
                               className="flex items-center py-1 px-1.5 rounded-md hover:bg-accent/30 transition-colors"
                             >
                               <span className="text-xs font-medium text-foreground/90 leading-tight">
-                                {habilidade.titulo}
-                              </span>
+                                  {habilidade.titulo}
+                                </span>
                             </motion.div>
                           );
                         })}

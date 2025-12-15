@@ -93,14 +93,14 @@ const Projetos = () => {
                     
                     {/* Imagem Limpa */}
                     <div className="relative w-full h-64 overflow-hidden">
-                      <img
-                        src={indice === 0 
+                    <img
+                      src={indice === 0 
                           ? 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&q=80'
-                          : 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80'
-                        }
-                        alt={projeto.titulo}
+                        : 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80'
+                      }
+                      alt={projeto.titulo}
                         className="w-full h-full object-cover"
-                      />
+                    />
                       {projeto.emManutencao && (
                         <div className="absolute inset-0 bg-black/40"></div>
                       )}

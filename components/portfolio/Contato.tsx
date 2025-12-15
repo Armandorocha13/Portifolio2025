@@ -81,7 +81,7 @@ const Contato = () => {
                 <h4 className="mono text-xs mb-4 text-muted-foreground uppercase tracking-wider">Redes Sociais</h4>
                 <div className="grid grid-cols-3 gap-3">
                   <motion.a
-                    href="https://www.linkedin.com/in/seu-perfil"
+                    href="https://www.linkedin.com/in/devrocha13"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group"
@@ -100,7 +100,7 @@ const Contato = () => {
                   </motion.a>
 
                   <motion.a
-                    href="https://github.com/seu-usuario"
+                    href="https://github.com/Armandorocha13"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group"
@@ -119,7 +119,7 @@ const Contato = () => {
                   </motion.a>
 
                   <motion.a
-                    href="https://wa.me/5511999999999"
+                    href="https://wa.me/5521990708854"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group"
