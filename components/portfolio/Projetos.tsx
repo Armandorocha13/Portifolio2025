@@ -14,23 +14,32 @@ const projetos = [
   {
     titulo: "Finance.io",
     descricao:
-      "Aplicação web moderna para gerenciamento financeiro pessoal. Funcionalidades: gestão de transações (entradas e saídas), dashboard com gráficos interativos, categorias personalizadas, relatórios com IA e controle de artilharia (gols).",
-    tags: ["React", "TypeScript", "Supabase", "Dashboard"],
-    imagem: "/placeholder.svg",
-    github: "#",
+      "Aplicação web para gestão financeira pessoal com dashboards interativos, controle de transações e relatórios automatizados via IA. Desenvolvido com foco em alta performance e experiência do usuário.",
+    tags: ["React", "TypeScript", "Supabase", "IA"],
+    imagem: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&q=80",
+    github: "https://github.com/Armandorocha13/Finance.io",
     demo: "#",
     destaque: true,
   },
   {
-    titulo: "Sistema de Ordem de Serviço (OS) " ,
+    titulo: "TaskFlow v2",
     descricao:
-      "Sistema completo de gerenciamento de Ordens de Serviço para loja de informática. Inclui CRUD de clientes, produtos e ordens de serviço, login com validação, relatórios e controle de acesso por perfil de usuário.",
-    tags: ["Java", "Maven", "MySQL", "JDBC", "Swing", "JFrame"],
-    imagem: "/placeholder.svg",
-    github: "#",
+      "Sistema de gestão de tarefas em equipe com notificações em tempo real via WhatsApp (Z-API). Inclui painel administrativo completo para controle de prazos, prioridades e membros.",
+    tags: ["JavaScript", "WhatsApp API", "UX Design"],
+    imagem: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=800&h=600&fit=crop&q=80",
+    github: "https://github.com/Armandorocha13/taskflow_v2",
     demo: "#",
     destaque: true,
-    emManutencao: true,
+  },
+  {
+    titulo: "Axis Control",
+    descricao:
+      "Ecossistema de automação desktop (MotorJava) para centralização de relatórios e integração COM/VBA. Arquitetura modular com interface premium em Java Swing e FlatLaf.",
+    tags: ["Java 17", "Maven", "Automation", "Excel Integration"],
+    imagem: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop&q=80",
+    github: "https://github.com/Armandorocha13/MotorJava",
+    demo: "#",
+    destaque: true,
   },
 ];
 

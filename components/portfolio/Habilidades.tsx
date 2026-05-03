@@ -21,121 +21,138 @@ import {
  * Cada habilidade contém título, descrição e ícone
  */
 const dadosHabilidades = [
-  // Linguagens
+  // Linguagens e Análise de Dados
   {
     titulo: "Java",
-    descricao: "Desenvolvimento de aplicações desktop e backend com Java, utilizando orientação a objetos e boas práticas.",
-    categoria: "Linguagens",
+    descricao: "Linguagem principal utilizada para desenvolvimento de sistemas e lógica robusta.",
+    categoria: "Habilidades de Dados",
     icone: Code,
-    nivel: 85,
-  },
-  {
-    titulo: "JavaScript (Node)",
-    descricao: "Desenvolvimento frontend e backend com JavaScript e Node.js, criando aplicações interativas e dinâmicas.",
-    categoria: "Linguagens",
-    icone: Code,
-    nivel: 80,
-  },
-  // Frameworks e Tecnologias
-  {
-    titulo: "React.js",
-    descricao: "Desenvolvimento de interfaces modernas e responsivas com React, hooks e gerenciamento de estado.",
-    categoria: "Frameworks e Tecnologias",
-    icone: Monitor,
-    nivel: 80,
-  },
-  {
-    titulo: "Swing (JFrame)",
-    descricao: "Desenvolvimento de interfaces gráficas desktop com Java Swing para aplicações desktop.",
-    categoria: "Frameworks e Tecnologias",
-    icone: Monitor,
-    nivel: 75,
-  },
-  {
-    titulo: "JDBC",
-    descricao: "Integração de aplicações Java com bancos de dados relacionais utilizando JDBC.",
-    categoria: "Frameworks e Tecnologias",
-    icone: Database,
-    nivel: 80,
-  },
-  {
-    titulo: "REST API",
-    descricao: "Desenvolvimento e consumo de APIs RESTful para integração entre sistemas.",
-    categoria: "Frameworks e Tecnologias",
-    icone: Terminal,
-    nivel: 75,
-  },
-  {
-    titulo: "Git & GitHub",
-    descricao: "Controle de versão, gerenciamento de código e colaboração em projetos com Git e GitHub.",
-    categoria: "Frameworks e Tecnologias",
-    icone: GitBranch,
-    nivel: 85,
-  },
-  // TI e Infraestrutura
-  {
-    titulo: "Suporte Técnico",
-    descricao: "Prestação de suporte técnico, resolução de problemas e atendimento ao usuário.",
-    categoria: "TI e Infraestrutura",
-    icone: Settings,
-    nivel: 85,
-  },
-  {
-    titulo: "Redes",
-    descricao: "Conhecimento em configuração e manutenção de redes de computadores.",
-    categoria: "TI e Infraestrutura",
-    icone: Cloud,
-    nivel: 70,
-  },
-  {
-    titulo: "Sistemas Operacionais",
-    descricao: "Conhecimento em administração e configuração de sistemas operacionais.",
-    categoria: "TI e Infraestrutura",
-    icone: Server,
-    nivel: 75,
-  },
-  {
-    titulo: "Governança de TI",
-    descricao: "Conhecimento em práticas de governança, políticas e processos de TI.",
-    categoria: "TI e Infraestrutura",
-    icone: Settings,
-    nivel: 70,
-  },
-  // Soft Skills
-  {
-    titulo: "Comunicação",
-    descricao: "Habilidade em comunicação clara e eficaz, tanto escrita quanto verbal.",
-    categoria: "Soft Skills",
-    icone: Users,
     nivel: 90,
   },
   {
+    titulo: "SQL",
+    descricao: "Consultas complexas e manipulação de grandes volumes de dados em bancos relacionais.",
+    categoria: "Habilidades de Dados",
+    icone: Database,
+    nivel: 85,
+  },
+  {
+    titulo: "Inteligência Artificial",
+    descricao: "Implementação e integração de soluções de IA no ecossistema corporativo.",
+    categoria: "Habilidades de Dados",
+    icone: Zap,
+    nivel: 80,
+  },
+  {
+    titulo: "Power BI",
+    descricao: "Criação de dashboards de alto nível e visualização de dados para tomada de decisão.",
+    categoria: "Habilidades de Dados",
+    icone: Monitor,
+    nivel: 90,
+  },
+  {
+    titulo: "Excel Avançado",
+    descricao: "Análise de dados complexa, automação de planilhas e relatórios dinâmicos.",
+    categoria: "Habilidades de Dados",
+    icone: Monitor,
+    nivel: 95,
+  },
+
+  // TI e Infraestrutura
+  {
+    titulo: "Suporte Técnico",
+    descricao: "Resolução de problemas de hardware e software e apoio ao usuário final.",
+    categoria: "TI e Infraestrutura",
+    icone: Settings,
+    nivel: 90,
+  },
+  {
+    titulo: "Redes",
+    descricao: "Configuração e administração de redes de computadores.",
+    categoria: "TI e Infraestrutura",
+    icone: Cloud,
+    nivel: 80,
+  },
+  {
+    titulo: "Sistemas Operacionais",
+    descricao: "Administração de ambientes Windows e Linux.",
+    categoria: "TI e Infraestrutura",
+    icone: Monitor,
+    nivel: 85,
+  },
+  {
+    titulo: "Governança de TI",
+    descricao: "Aplicação de frameworks e melhores práticas de gestão de tecnologia.",
+    categoria: "TI e Infraestrutura",
+    icone: Briefcase,
+    nivel: 80,
+  },
+
+  // Soft Skills
+  {
+    titulo: "Comunicação",
+    descricao: "Capacidade de transmitir informações de forma clara e assertiva.",
+    categoria: "Soft Skills",
+    icone: Users,
+    nivel: 95,
+  },
+  {
     titulo: "Trabalho em Equipe",
-    descricao: "Colaboração eficiente em equipes multidisciplinares, contribuindo para objetivos comuns.",
+    descricao: "Colaboração efetiva para atingir objetivos comuns do projeto.",
     categoria: "Soft Skills",
     icone: Users,
     nivel: 90,
   },
   {
     titulo: "Proatividade",
-    descricao: "Iniciativa para identificar e resolver problemas, antecipando necessidades.",
+    descricao: "Iniciativa para identificar melhorias e antecipar soluções.",
     categoria: "Soft Skills",
     icone: Zap,
-    nivel: 85,
+    nivel: 90,
   },
   {
     titulo: "Atendimento ao Cliente",
-    descricao: "Excelência no atendimento ao cliente, garantindo satisfação e resolução de demandas.",
+    descricao: "Foco na satisfação do usuário e excelência no suporte.",
     categoria: "Soft Skills",
     icone: Users,
-    nivel: 90,
+    nivel: 95,
+  },
+
+  // Frameworks e Tecnologias
+  {
+    titulo: "JDBC",
+    descricao: "Conectividade de bancos de dados em aplicações Java.",
+    categoria: "Frameworks e Tecnologias",
+    icone: Database,
+    nivel: 85,
   },
   {
-    titulo: "Organização",
-    descricao: "Capacidade de organização e planejamento para otimizar processos e resultados.",
-    categoria: "Soft Skills",
-    icone: Briefcase,
-    nivel: 90,
+    titulo: "MySQL",
+    descricao: "Gerenciamento de bancos de dados relacionais.",
+    categoria: "Frameworks e Tecnologias",
+    icone: Database,
+    nivel: 85,
+  },
+  {
+    titulo: "REST API",
+    descricao: "Desenvolvimento e consumo de serviços web.",
+    categoria: "Frameworks e Tecnologias",
+    icone: Terminal,
+    nivel: 80,
+  },
+  {
+    titulo: "Git & GitHub",
+    descricao: "Controle de versão e colaboração em código.",
+    categoria: "Frameworks e Tecnologias",
+    icone: GitBranch,
+    nivel: 85,
+  },
+  {
+    titulo: "MCP",
+    descricao: "Conhecimentos certificados pela Microsoft.",
+    categoria: "Frameworks e Tecnologias",
+    icone: Settings,
+    nivel: 80,
   },
 ];
 
@@ -156,7 +173,7 @@ const Habilidades = () => {
   const categorias = Array.from(new Set(dadosHabilidades.map(habilidade => habilidade.categoria)));
 
   const iconesCategoria: Record<string, typeof Code> = {
-    'Linguagens': Languages,
+    'Habilidades de Dados': Languages,
     'Frameworks e Tecnologias': Monitor,
     'TI e Infraestrutura': Server,
     'Soft Skills': Users,
@@ -175,7 +192,7 @@ const Habilidades = () => {
   };
 
   return (
-    <section id="habilidades" className="section-padding bg-background relative overflow-hidden" ref={ref}>
+    <section id="habilidades" className="section-padding bg-transparent relative overflow-hidden" ref={ref}>
       <div className="container-narrow">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

@@ -20,7 +20,7 @@ import Rodape from "@/components/portfolio/Rodape";
  */
 const Index = () => {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-transparent">
       <Cabecalho />
       <Inicio />
       <Sobre />

@@ -31,9 +31,9 @@ export default function PlanetaRotacionando({ width = 800, height = 600, classNa
     if (!contexto) return
 
     // Configuração de dimensões responsivas
-    const larguraContainer = Math.min(width, window.innerWidth - 40)
-    const alturaContainer = Math.min(height, window.innerHeight - 100)
-    const raio = Math.min(larguraContainer, alturaContainer) / 2.5
+    const larguraContainer = width
+    const alturaContainer = height
+    const raio = Math.min(larguraContainer, alturaContainer) / 3.2
 
     const dpr = window.devicePixelRatio || 1
     canvas.width = larguraContainer * dpr
@@ -43,7 +43,7 @@ export default function PlanetaRotacionando({ width = 800, height = 600, classNa
     contexto.scale(dpr, dpr)
 
     // Cria projeção e gerador de caminho para Canvas
-    const offsetVertical = -80 // Move o planeta para cima
+    const offsetVertical = 0 // Centralizado perfeitamente
     const projecao = d3
       .geoOrthographic()
       .scale(raio)

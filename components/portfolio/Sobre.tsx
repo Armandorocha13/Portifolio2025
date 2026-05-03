@@ -54,20 +54,11 @@ const Sobre = () => {
           >
             {/* Texto de apresentação */}
             <p className="body-md">
-              Meu nome é <strong>Armando rocha</strong>, sou apaixonado por tecnologias. Criar, solucionar 
-              e resolver situações e problemas complexos
+              Profissional focado em <strong>análise de dados</strong> e graduando em Sistemas. Domino o ciclo completo da informação: desde a orquestração de pipelines de dados, rotinas de ETL e consultas complexas em SQL, até a entrega de dashboards de alto nível em Power BI, Excel e painéis customizados com ferramentas web.
             </p>
 
             <p className="body-md">
-              Minha jornada começou com curiosidade por entender como as coisas
-              funcionam, e evoluiu para uma carreira dedicada a construir
-              experiências digitais que fazem a diferença.
-            </p>
-
-            <p className="body-md">
-              Quando não estou codando, você me encontra explorando novas
-              tecnologias, contribuindo para projetos open-source ou tomando um
-              bom café.
+              Utilizo a programação e arquiteturas modernas para arquitetar automações de processos e integrar Inteligência Artificial no ecossistema corporativo, garantindo mais eficiência e precisão na tomada de decisão.
             </p>
             {/* Botão para baixar currículo */}
             <a
@@ -141,7 +132,7 @@ const Sobre = () => {
                       </div>
                       <p className="mono text-xs">Armando Rocha</p>
                       <p className="text-muted-foreground text-sm mt-1">
-                        Full-Stack Developer
+                        Analista de Dados
                       </p>
                     </div>
                   </div>
