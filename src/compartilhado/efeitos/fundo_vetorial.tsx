@@ -53,12 +53,12 @@ export const VectorBackground: React.FC = () => {
     }
 
     class Symbol {
-      x: number;
-      y: number;
-      text: string;
-      alpha: number;
-      speed: number;
-      fontSize: number;
+      x = 0;
+      y = 0;
+      text = "";
+      alpha = 0;
+      speed = 0;
+      fontSize = 12;
 
       constructor() {
         this.reset();

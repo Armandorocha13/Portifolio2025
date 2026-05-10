@@ -26,15 +26,15 @@ const projetos: ProjetoPortfolio[] = [
       "Aplicação web para gestão financeira pessoal com dashboards interativos, controle de transações e relatórios automatizados via IA.",
     tags: ["React", "TypeScript", "Supabase", "Tailwind CSS", "Recharts", "shadcn/ui"],
     github: "https://github.com/Armandorocha13/Finance.io",
-    demo: "#",
+    demo: "https://vaidoso-fc.vercel.app/auth",
   },
   {
-    titulo: "gbsite",
+    titulo: "Psicanalista Andrea Miranda",
     descricao:
-      "Site institucional responsivo e otimizado para apresentar projetos e serviços, com foco em experiência do usuário e SEO.",
-    tags: ["HTML", "CSS", "Font Awesome", "Google Fonts"],
-    github: "https://github.com/Armandorocha13/gbsite",
-    demo: "#",
+      "Projeto web institucional voltado para presença digital e apresentação profissional, com foco em experiência do usuário.",
+    tags: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/Armandorocha13/psiAndreiaMiranda",
+    demo: "https://psi-andrei-miranda.vercel.app/",
   },
 ];
 
@@ -72,12 +72,12 @@ export const ProjectsSection = () => {
             return (
               <article
                 key={projeto.titulo}
-                className="flex h-full flex-col rounded-2xl border border-white/20 bg-background/80 p-6"
+                className="flex h-full flex-col rounded-2xl border border-white/20 bg-background/80 p-6 text-center"
               >
                 <h3 className="mb-2 text-lg font-semibold">{projeto.titulo}</h3>
                 <p className="mb-4 text-sm text-muted-foreground">{projeto.descricao}</p>
 
-                <div className="mb-6 flex flex-wrap gap-2">
+                <div className="mb-6 flex flex-wrap justify-center gap-2">
                   {projeto.tags.map((tag) => (
                     <span key={tag} className="rounded bg-gray-100 px-2 py-1 text-xs text-black">
                       {tag}
