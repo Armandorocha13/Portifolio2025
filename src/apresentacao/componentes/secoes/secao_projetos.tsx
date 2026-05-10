@@ -1,70 +1,45 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github, Wrench } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/compartilhado/interface/botao";
-import { StickyScrollReveal } from "@/compartilhado/interface/rolagem_fixa";
 
-type PortfolioProject = {
+type ProjetoPortfolio = {
   titulo: string;
   descricao: string;
   tags: string[];
-  imagem: string;
   github: string;
   demo: string;
-  destaque: boolean;
-  emManutencao?: boolean;
 };
 
-/**
- * Array de projetos do portfólio
- * Projetos marcados como 'destaque: true' aparecem na seção principal
- * Outros projetos aparecem na grade secundária
- */
-const projects: PortfolioProject[] = [
+const projetos: ProjetoPortfolio[] = [
+  {
+    titulo: "OsX",
+    descricao:
+      "Conjunto de ferramentas e scripts para automação e integração de tarefas, focado em produtividade e utilitários para desenvolvedores.",
+    tags: ["Java", "Maven", "MySQL Connector"],
+    github: "https://github.com/Armandorocha13/OsX",
+    demo: "#",
+  },
   {
     titulo: "Finance.io",
     descricao:
-      "Aplicação web para gestão financeira pessoal com dashboards interativos, controle de transações e relatórios automatizados via IA. Desenvolvido com foco em alta performance e experiência do usuário.",
-    tags: ["React", "TypeScript", "Supabase", "IA"],
-    imagem: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&q=80",
+      "Aplicação web para gestão financeira pessoal com dashboards interativos, controle de transações e relatórios automatizados via IA.",
+    tags: ["React", "TypeScript", "Supabase", "Tailwind CSS", "Recharts", "shadcn/ui"],
     github: "https://github.com/Armandorocha13/Finance.io",
     demo: "#",
-    destaque: true,
   },
   {
-    titulo: "TaskFlow v2",
+    titulo: "gbsite",
     descricao:
-      "Sistema de gestão de tarefas em equipe com notificações em tempo real via WhatsApp (Z-API). Inclui painel administrativo completo para controle de prazos, prioridades e membros.",
-    tags: ["JavaScript", "WhatsApp API", "UX Design"],
-    imagem: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=800&h=600&fit=crop&q=80",
-    github: "https://github.com/Armandorocha13/taskflow_v2",
+      "Site institucional responsivo e otimizado para apresentar projetos e serviços, com foco em experiência do usuário e SEO.",
+    tags: ["HTML", "CSS", "Font Awesome", "Google Fonts"],
+    github: "https://github.com/Armandorocha13/gbsite",
     demo: "#",
-    destaque: true,
-  },
-  {
-    titulo: "Axis Control",
-    descricao:
-      "Ecossistema de automação desktop (MotorJava) para centralização de relatórios e integração COM/VBA. Arquitetura modular com interface premium em Java Swing e FlatLaf.",
-    tags: ["Java 17", "Maven", "Automation", "Excel Integration"],
-    imagem: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=600&fit=crop&q=80",
-    github: "https://github.com/Armandorocha13/MotorJava",
-    demo: "#",
-    destaque: true,
   },
 ];
 
-/**
- * Componente Projetos - Seção de Projetos
- * 
- * Exibe projetos em destaque com scroll sticky interativo
- * Mostra outros projetos em uma grade abaixo
- * Inclui animações de entrada quando a seção entra na viewport
- */
 export const ProjectsSection = () => {
-  // Ref para o elemento da seção (usado para detectar quando entra na viewport)
   const ref = useRef(null);
-  // Detecta se a seção está visível na viewport (apenas uma vez)
   const estaVisivel = useInView(ref, { once: true, margin: "-100px" });
 
   return (
@@ -85,68 +60,49 @@ export const ProjectsSection = () => {
           </h2>
         </motion.div>
 
-        {/* Featured Projects with StickyScroll */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={estaVisivel ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="mb-20"
+          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
         >
-          <StickyScrollReveal
-            content={projects
-              .filter((p) => p.destaque)
-              .map((projeto, indice) => ({
-                titulo: projeto.titulo,
-                descricao: projeto.descricao,
-                tags: projeto.tags,
-                emManutencao: projeto.emManutencao || false,
-                conteudo: (
-                  <div className="h-full w-full flex flex-col bg-background overflow-hidden relative">
-                    {/* Badge de Manutenção no card */}
-                    {projeto.emManutencao && (
-                      <div className="absolute top-4 right-4 z-10 px-3 py-1.5 text-xs font-semibold bg-amber-500/20 text-amber-400 rounded-full border border-amber-500/30 flex items-center gap-1.5 backdrop-blur-sm">
-                        <Wrench className="h-3 w-3" />
-                        <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse"></span>
-                        Em Manutenção
-                      </div>
-                    )}
-                    
-                    {/* Imagem Limpa */}
-                    <div className="relative w-full h-64 overflow-hidden">
-                    <img
-                      src={indice === 0 
-                          ? 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop&q=80'
-                        : 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80'
-                      }
-                      alt={projeto.titulo}
-                        className="w-full h-full object-cover"
-                    />
-                      {projeto.emManutencao && (
-                        <div className="absolute inset-0 bg-black/40"></div>
-                      )}
-                    </div>
-                    
-                    {/* Conteúdo abaixo da imagem */}
-                    <div className="flex flex-col flex-1 p-6 justify-end">
-                      {/* Botões */}
-                      <div className="flex gap-3">
-                        <Button size="sm" variant="outline" className="gap-2" disabled={projeto.emManutencao}>
-                          <Github className="h-4 w-4" />
-                          Code
-                        </Button>
-                        <Button size="sm" className="gap-2" disabled={projeto.emManutencao}>
-                          <ExternalLink className="h-4 w-4" />
-                          Demo
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                ),
-              }))}
-            contentClassName="border border-white/20"
-          />
-        </motion.div>
+          {projetos.map((projeto) => {
+            const link_demo = projeto.demo === "#" ? projeto.github : projeto.demo;
 
+            return (
+              <article
+                key={projeto.titulo}
+                className="flex h-full flex-col rounded-2xl border border-white/20 bg-background/80 p-6"
+              >
+                <h3 className="mb-2 text-lg font-semibold">{projeto.titulo}</h3>
+                <p className="mb-4 text-sm text-muted-foreground">{projeto.descricao}</p>
+
+                <div className="mb-6 flex flex-wrap gap-2">
+                  {projeto.tags.map((tag) => (
+                    <span key={tag} className="rounded bg-gray-100 px-2 py-1 text-xs text-black">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-auto flex gap-3">
+                  <a href={projeto.github} target="_blank" rel="noopener noreferrer" className="flex-1">
+                    <Button size="sm" variant="outline" className="w-full gap-2">
+                      <Github className="h-4 w-4" />
+                      Repositório
+                    </Button>
+                  </a>
+                  <a href={link_demo} target="_blank" rel="noopener noreferrer" className="flex-1">
+                    <Button size="sm" className="w-full gap-2">
+                      <ExternalLink className="h-4 w-4" />
+                      Demo
+                    </Button>
+                  </a>
+                </div>
+              </article>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

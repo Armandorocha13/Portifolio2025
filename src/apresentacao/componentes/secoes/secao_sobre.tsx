@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"; // Importa componente animado do Framer Motion
 import { useInView } from "framer-motion"; // Hook para checar quando elemento está visível
 import { useRef, useState } from "react"; // Importa hooks do React
+import { exportar_curriculo_pdf } from "@/compartilhado/curriculo/exportar_curriculo_pdf";
 
 /**
  * Componente Sobre - Seção "Sobre Mim"
@@ -61,13 +62,13 @@ export const AboutSection = () => {
               Utilizo a programação e arquiteturas modernas para arquitetar automações de processos e integração com inteligência artificial no ambiente corporativo, garantindo mais eficiência e precisão na tomada de decisão.
             </p>
             {/* Botão para baixar currículo */}
-            <a
-              href="/curriculo-armando-rocha.pdf"
-              download
+            <button
+              type="button"
+              onClick={exportar_curriculo_pdf}
               className="inline-flex items-center px-5 py-2 rounded-md bg-slate-600 text-white font-thin transition-colors hover:bg-transparent/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               Baixar Currículo
-            </a>
+            </button>
           </motion.div>
 
           {/* Bloco da imagem de perfil animado */}

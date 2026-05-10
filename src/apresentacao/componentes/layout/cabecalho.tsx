@@ -1,4 +1,5 @@
 import React from 'react';
+import { exportar_curriculo_pdf } from "@/compartilhado/curriculo/exportar_curriculo_pdf";
 import { MenuToggleIcon } from "@/compartilhado/icones/icone_menu_toggle";
 import { useScroll } from "@/compartilhado/ganchos/usar_scroll";
 import { cn } from "@/compartilhado/biblioteca/utilitarios";
@@ -107,7 +108,7 @@ export function Header() {
 							{link.label}
 						</a>
 					))}
-					<Button variant="outline" size="sm" className="ml-4">
+					<Button variant="outline" size="sm" className="ml-4" onClick={exportar_curriculo_pdf}>
 						Currículo
 					</Button>
 				</div>
@@ -148,7 +149,15 @@ export function Header() {
 						))}
 					</div>
 					<div className="flex flex-col gap-2">
-						<Button variant="outline" size="lg" className="w-full">
+						<Button
+							variant="outline"
+							size="lg"
+							className="w-full"
+							onClick={() => {
+								setAberto(false);
+								exportar_curriculo_pdf();
+							}}
+						>
 							Currículo
 						</Button>
 					</div>
