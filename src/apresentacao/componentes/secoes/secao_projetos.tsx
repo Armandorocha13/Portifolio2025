@@ -29,12 +29,12 @@ const projetos: ProjetoPortfolio[] = [
     demo: "https://vaidoso-fc.vercel.app/auth",
   },
   {
-    titulo: "Psicanalista Andrea Miranda",
+    titulo: "Buscador B3",
     descricao:
-      "Projeto web institucional voltado para presença digital e apresentação profissional, com foco em experiência do usuário.",
-    tags: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/Armandorocha13/psiAndreiaMiranda",
-    demo: "https://psi-andrei-miranda.vercel.app/",
+      "Pipeline ETL automatizado para monitoramento e análise de ativos da B3, com extração via Web Scraping em Java (Jsoup), persistência no PostgreSQL (Supabase) e relatórios interativos no Power BI.",
+    tags: ["Java", "PostgreSQL", "Supabase", "Power BI", "Jsoup", "JDBC"],
+    github: "https://github.com/Armandorocha13/buscadorB3",
+    demo: "https://app.powerbi.com/view?r=eyJrIjoiODJlNTFiNWQtNWU2NS00OGY5LThhMDAtODM2ZGU5ODg2YmQzIiwidCI6ImNlYWQ1NmU3LWU5MWEtNDFkMC1iMGU3LTE4N2JiMzgwNjFiZiIsImMiOjR9",
   },
 ];
 
