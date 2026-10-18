@@ -25,7 +25,7 @@ export const ContactSection = () => {
           className="text-center mb-16"
         >
           <span className="mono mb-4 block">
-            <span className="text-foreground">05.</span> Contato
+            <span className="text-foreground">06.</span> Contato
           </span>
 
           <h2 className="heading-lg mb-6">

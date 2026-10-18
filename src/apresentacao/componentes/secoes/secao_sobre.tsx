@@ -55,11 +55,11 @@ export const AboutSection = () => {
           >
             {/* Texto de apresentação */}
             <p className="body-md">
-              Profissional focado em <strong>análise de dados</strong> e graduando em Análise e Desenvolvimento de Sistemas. Domino o ciclo completo da informação: desde a orquestração de pipelines de dados, rotinas de ETL e consultas complexas em SQL, até a entrega de dashboards de alto nível em Power BI, Excel e painéis customizados com ferramentas web.
+              <strong>Analista de Dados / BI</strong> na FFA Infraestrutura e graduando em Análise e Desenvolvimento de Sistemas (UVA). Atuo na interseção entre dados, BI e desenvolvimento de sistemas, em ambientes de infraestrutura e operações.
             </p>
 
             <p className="body-md">
-              Utilizo a programação e arquiteturas modernas para arquitetar automações de processos e integração com inteligência artificial no ambiente corporativo, garantindo mais eficiência e precisão na tomada de decisão.
+              Consolido dados fragmentados de fontes como Outlook, WMS e Aniel em modelos dimensionais (Star Schema) e painéis em Power BI com DAX. Automatizo rotinas de ETL com Python e n8n, inclusive com LLMs locais, com foco em governança de dados, redução de falhas de inventário e menos trabalho manual.
             </p>
             {/* Botão para baixar currículo */}
             <button
@@ -132,7 +132,7 @@ export const AboutSection = () => {
                       </div>
                       <p className="mono text-xs">Armando Rocha</p>
                       <p className="text-muted-foreground text-sm mt-1">
-                        Analista de Dados
+                        Analista de Dados / BI
                       </p>
                     </div>
                   </div>

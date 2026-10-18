@@ -1,5 +1,6 @@
 import { Footer } from "@/apresentacao/componentes/layout/rodape";
 import { Header } from "@/apresentacao/componentes/layout/cabecalho";
+import { ExperienceSection } from "@/apresentacao/componentes/secoes/secao_experiencia";
 import { AboutSection } from "@/apresentacao/componentes/secoes/secao_sobre";
 import { ContactSection } from "@/apresentacao/componentes/secoes/secao_contato";
 import { HeroSection } from "@/apresentacao/componentes/secoes/secao_inicio";
@@ -13,6 +14,7 @@ import { SkillsSection } from "@/apresentacao/componentes/secoes/secao_habilidad
  * - Cabecalho: Navegação fixa
  * - Inicio: Seção inicial com planeta e texto animado
  * - Sobre: Sobre mim
+ * - Experiencia: Experiência profissional e formação
  * - Habilidades: Habilidades técnicas
  * - Projetos: Projetos em destaque
  * - Contato: Formulário de contato e redes sociais
@@ -24,6 +26,7 @@ const HomePage = () => {
       <Header />
       <HeroSection />
       <AboutSection />
+      <ExperienceSection />
       <SkillsSection />
       <ProjectsSection />
       <ContactSection />
