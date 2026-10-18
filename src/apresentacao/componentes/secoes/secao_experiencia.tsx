@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Briefcase, GraduationCap, MapPin } from "lucide-react";
+import { Award, Briefcase, GraduationCap, MapPin } from "lucide-react";
 
 type Experiencia = {
   cargo: string;
@@ -30,8 +30,12 @@ const formacao = {
   curso: "Análise e Desenvolvimento de Sistemas",
   instituicao: "Universidade Veiga de Almeida (UVA)",
   periodo: "Previsão de conclusão: 2026",
-  destaques: ["Banco de Dados", "Engenharia de Software", "Arquitetura de Computadores"],
+  destaques: ["Banco de Dados", "Análise de Dados", "Engenharia de Dados"],
 };
+
+const certificacoes = [
+  { nome: "Azure Data Fundamentals", codigo: "DP-900", emissor: "Microsoft" },
+];
 
 /**
  * Componente Experiência - Experiência profissional e formação acadêmica
@@ -135,6 +139,21 @@ export const ExperienceSection = () => {
                 <span key={destaque} className="rounded border border-white/20 px-2 py-1 text-xs text-muted-foreground">
                   {destaque}
                 </span>
+              ))}
+            </div>
+
+            <div className="mt-6 border-t border-white/10 pt-5">
+              <p className="mb-3 text-xs uppercase tracking-wider text-muted-foreground">Certificações</p>
+              {certificacoes.map((certificacao) => (
+                <div key={certificacao.codigo} className="flex items-start gap-3">
+                  <Award className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
+                  <div>
+                    <p className="text-sm font-medium">{certificacao.nome}</p>
+                    <p className="text-xs text-muted-foreground">
+                      <span className="mono whitespace-nowrap text-foreground">{certificacao.codigo}</span> · {certificacao.emissor}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
           </motion.article>

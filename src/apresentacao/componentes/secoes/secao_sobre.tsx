@@ -14,7 +14,7 @@ const etapasPipeline = [
 
 /**
  * Componente Sobre - Seção "Sobre Mim"
- * Exibe informações pessoais e profissionais do desenvolvedor.
+ * Exibe informações pessoais e profissionais.
  * Inclui animações de entrada quando a seção entra na viewport.
  */
 export const AboutSection = () => {
@@ -64,7 +64,7 @@ export const AboutSection = () => {
           >
             {/* Texto de apresentação */}
             <p className="body-md">
-              Sou <strong>Analista de Dados</strong> com atuação em <strong>engenharia de dados</strong> e BI no setor de infraestrutura e operações, hoje na FFA Infraestrutura. Graduando em Análise e Desenvolvimento de Sistemas (UVA, 2026).
+              Sou <strong>Analista de Dados</strong> com atuação em <strong>engenharia de dados</strong> e BI no setor de infraestrutura e operações, hoje na FFA Infraestrutura. Certificado Microsoft Azure Data Fundamentals (DP-900) e graduando em Análise e Desenvolvimento de Sistemas (UVA, 2026).
             </p>
 
             <p className="body-md">

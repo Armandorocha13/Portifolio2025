@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import {
   BarChart3,
   Bot,
+  Cloud,
   Code,
   Container,
   Database,
@@ -19,10 +20,9 @@ import {
  */
 const dadosHabilidades = [
   { titulo: "Pipelines de ETL", categoria: "Engenharia de Dados", icone: Workflow },
-  { titulo: "Integração de múltiplas fontes", categoria: "Engenharia de Dados", icone: Workflow },
+  { titulo: "Integração de fontes e APIs", categoria: "Engenharia de Dados", icone: Workflow },
   { titulo: "Python", categoria: "Engenharia de Dados", icone: Terminal },
   { titulo: "n8n", categoria: "Engenharia de Dados", icone: Workflow },
-  { titulo: "REST APIs", categoria: "Engenharia de Dados", icone: Code },
   { titulo: "Docker", categoria: "Engenharia de Dados", icone: Container },
   { titulo: "Git", categoria: "Engenharia de Dados", icone: GitBranch },
   { titulo: "SQL", categoria: "Modelagem & Bancos", icone: Database },
@@ -34,14 +34,15 @@ const dadosHabilidades = [
   { titulo: "DAX", categoria: "Análise & BI", icone: BarChart3 },
   { titulo: "Excel avançado", categoria: "Análise & BI", icone: Sheet },
   { titulo: "Métricas e indicadores", categoria: "Análise & BI", icone: BarChart3 },
-  { titulo: "LLMs locais (Ollama/DeepSeek) em ETL", categoria: "IA aplicada a Dados", icone: Bot },
-  { titulo: "Model Context Protocol (MCP)", categoria: "IA aplicada a Dados", icone: Bot },
+  { titulo: "Microsoft Azure (DP-900)", categoria: "Nuvem & IA", icone: Cloud },
+  { titulo: "LLMs locais (Ollama/DeepSeek) em ETL", categoria: "Nuvem & IA", icone: Bot },
+  { titulo: "Model Context Protocol (MCP)", categoria: "Nuvem & IA", icone: Bot },
 ];
 
 /**
  * Componente Habilidades - Seção de Habilidades
  * 
- * Exibe as habilidades técnicas do desenvolvedor organizadas por categoria
+ * Exibe as habilidades técnicas organizadas por categoria
  * Inclui animações de entrada quando a seção entra na viewport
  * Layout responsivo com grid adaptável
  */
@@ -58,7 +59,7 @@ export const SkillsSection = () => {
     'Engenharia de Dados': Workflow,
     'Modelagem & Bancos': Database,
     'Análise & BI': BarChart3,
-    'IA aplicada a Dados': Bot,
+    'Nuvem & IA': Cloud,
   };
 
   const lidarVirarCartao = (categoria: string) => {
