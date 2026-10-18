@@ -13,7 +13,7 @@ type Experiencia = {
 
 const experiencias: Experiencia[] = [
   {
-    cargo: "Analista de Planejamento / BI",
+    cargo: "Analista de Planejamento e Controle",
     empresa: "FFA Infraestrutura",
     periodo: "12/2025 – Atual",
     local: "Queimados, RJ",
