@@ -133,23 +133,19 @@ export const HeroSection = () => {
 
       {/* Texto digitado sempre visível por cima */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none px-4">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground font-orbitron mb-4 text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-foreground font-orbitron text-center">
           <EfeitoDigitacao
             frases={[
-              "<AeroCode/>",
-              "Dados brutos",
-              "Pipelines confiáveis",
-              "Decisões estratégicas",
+              "Armando Rocha",
+              "Analista de Dados",
+              "Engenharia de Dados",
+              "Dados em decisões",
             ]}
             velocidadeDigitacao={100}
             velocidadeApagamento={40}
             tempoPausa={1500}
           />
         </h1>
-        <p className="mono flex flex-col items-center gap-1 rounded-md bg-background/60 px-3 py-2 text-center text-xs tracking-[0.2em] backdrop-blur-sm md:flex-row md:gap-0 md:text-sm">
-          <span className="text-foreground">Armando Rocha</span>
-          <span><span className="hidden md:inline"> · </span>Analista de Dados · Engenharia de Dados</span>
-        </p>
       </div>
     </section>
   );
