@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github } from "lucide-react";
+import { Github } from "lucide-react";
 import { Button } from "@/compartilhado/interface/botao";
 
 type ProjetoPortfolio = {
@@ -8,33 +8,15 @@ type ProjetoPortfolio = {
   descricao: string;
   tags: string[];
   github: string;
-  demo: string;
 };
 
 const projetos: ProjetoPortfolio[] = [
   {
-    titulo: "Buscador B3",
+    titulo: "AXIS automate",
     descricao:
-      "Pipeline ETL automatizado para monitoramento e análise de ativos da B3, com extração via Web Scraping em Java (Jsoup), persistência no PostgreSQL (Supabase) e relatórios interativos no Power BI.",
-    tags: ["Java", "PostgreSQL", "Supabase", "Power BI", "Jsoup", "JDBC"],
-    github: "https://github.com/Armandorocha13/buscadorB3",
-    demo: "https://app.powerbi.com/view?r=eyJrIjoiODJlNTFiNWQtNWU2NS00OGY5LThhMDAtODM2ZGU5ODg2YmQzIiwidCI6ImNlYWQ1NmU3LWU5MWEtNDFkMC1iMGU3LTE4N2JiMzgwNjFiZiIsImMiOjR9",
-  },
-  {
-    titulo: "OsX",
-    descricao:
-      "Conjunto de ferramentas e scripts para automação e integração de tarefas, focado em produtividade e utilitários para desenvolvedores.",
-    tags: ["Java", "Maven", "MySQL Connector"],
-    github: "https://github.com/Armandorocha13/OsX",
-    demo: "#",
-  },
-  {
-    titulo: "Finance.io",
-    descricao:
-      "Aplicação web para gestão financeira pessoal com dashboards interativos, controle de transações e relatórios automatizados via IA.",
-    tags: ["React", "TypeScript", "Supabase", "Tailwind CSS", "Recharts", "shadcn/ui"],
-    github: "https://github.com/Armandorocha13/Finance.io",
-    demo: "https://vaidoso-fc.vercel.app/auth",
+      "Pipeline de dados de operações de campo: robôs RPA extraem os relatórios diários dos portais operacionais, os dados são tratados e consolidados em SQLite e Google Sheets, e os relatórios gerenciais (KPIs, gráficos e Excel) são disparados por e-mail e publicados em painéis web. Inclui a geração automática dos arquivos padrão de baixa de materiais.",
+    tags: ["Python", "Selenium", "pandas", "SQLite", "Google Sheets API", "Supabase", "Excel", "ETL"],
+    github: "https://github.com/Armandorocha13/axis-automate",
   },
 ];
 
@@ -64,7 +46,7 @@ export const ProjectsSection = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={estaVisivel ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="mx-auto grid max-w-2xl grid-cols-1 gap-6"
         >
           {projetos.map((projeto) => {
             return (
@@ -83,21 +65,13 @@ export const ProjectsSection = () => {
                   ))}
                 </div>
 
-                <div className="mt-auto flex gap-3">
-                  <a href={projeto.github} target="_blank" rel="noopener noreferrer" className="flex-1">
-                    <Button size="sm" variant="outline" className="w-full gap-2">
+                <div className="mt-auto flex justify-center">
+                  <a href={projeto.github} target="_blank" rel="noopener noreferrer">
+                    <Button size="sm" variant="outline" className="gap-2">
                       <Github className="h-4 w-4" />
-                      Repositório
+                      Ver repositório
                     </Button>
                   </a>
-                  {projeto.demo !== "#" && (
-                    <a href={projeto.demo} target="_blank" rel="noopener noreferrer" className="flex-1">
-                      <Button size="sm" className="w-full gap-2">
-                        <ExternalLink className="h-4 w-4" />
-                        Demo
-                      </Button>
-                    </a>
-                  )}
                 </div>
               </article>
             );
