@@ -16,7 +16,7 @@ const experiencias: Experiencia[] = [
     cargo: "Analista de Planejamento e Controle",
     empresa: "FFA Infraestrutura",
     periodo: "12/2025 – Atual",
-    local: "Queimados, RJ",
+    local: "Rio de Janeiro, RJ",
     destaques: [
       "AXIS automate: liderei o desenvolvimento de um sistema em Python que automatiza a extração de dados e o envio de relatórios, otimizando rotinas operacionais recorrentes e reduzindo o trabalho manual.",
       "Automação de ETL: automatizei rotinas de extração, tratamento e consolidação com Python e n8n, incluindo LLMs locais em terminais restritos, eliminando horas de trabalho manual recorrente e reduzindo erros de consolidação.",
