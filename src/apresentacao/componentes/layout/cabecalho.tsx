@@ -24,6 +24,10 @@ export function Header() {
 			href: '#sobre',
 		},
 		{
+			label: 'Experiência',
+			href: '#experiencia',
+		},
+		{
 			label: 'Habilidades',
 			href: '#habilidades',
 		},

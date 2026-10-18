@@ -1,0 +1,126 @@
+<!doctype html>
+<!--
+  Fonte do currículo (public/curriculo-armando-rocha.pdf).
+  Para gerar o PDF: abra no Chrome > Imprimir > Salvar como PDF (A4, margens "Nenhuma", com gráficos de plano de fundo).
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Armando de Lima Rocha — Analista de Dados | Engenharia de Dados</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Carlito", Calibri, "Helvetica Neue", Arial, sans-serif;
+    color: #1f2933;
+    font-size: 10.4pt;
+    line-height: 1.42;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page { width: 210mm; min-height: 297mm; padding: 15mm 16mm 13mm; }
+  header { border-bottom: 2px solid #0e7490; padding-bottom: 9pt; margin-bottom: 11pt; }
+  h1 { font-size: 21pt; font-weight: 700; letter-spacing: -0.02em; color: #0b1720; }
+  .cargo { font-size: 11.5pt; font-weight: 600; color: #0e7490; margin-top: 2pt; }
+  .contato { margin-top: 6pt; font-size: 8.8pt; color: #3e4c59; }
+  .contato span + span::before { content: "•"; margin: 0 6pt; color: #9aa5b1; }
+  .contato a { color: inherit; text-decoration: none; }
+  h2 {
+    font-size: 9pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: #0e7490; margin: 12pt 0 5pt; padding-bottom: 2pt; border-bottom: 1px solid #d9e2ec;
+  }
+  p { margin-bottom: 4pt; }
+  .competencias { display: grid; grid-template-columns: 150pt 1fr; row-gap: 2.5pt; column-gap: 8pt; }
+  .competencias dt { font-weight: 600; color: #0b1720; }
+  .competencias dd { color: #323f4b; }
+  .exp-topo { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .exp-cargo { font-weight: 700; font-size: 10.2pt; color: #0b1720; }
+  .exp-empresa { font-weight: 600; color: #323f4b; }
+  .exp-data { font-size: 8.8pt; color: #52606d; white-space: nowrap; }
+  ul { margin: 5pt 0 0 13pt; }
+  li { margin-bottom: 3.5pt; padding-left: 2pt; }
+  li strong { color: #0b1720; }
+  .stack { margin-top: 4pt; font-size: 8.8pt; color: #52606d; }
+  .stack b { color: #323f4b; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>Armando de Lima Rocha</h1>
+    <div class="cargo">Analista de Dados | Engenharia de Dados</div>
+    <div class="contato">
+      <span>Queimados, RJ – Brasil</span>
+      <span>(21) 99070-8854</span>
+      <span><a href="mailto:mandoqxo@gmail.com">mandoqxo@gmail.com</a></span>
+    </div>
+    <div class="contato">
+      <span><a href="https://www.linkedin.com/in/devrocha13">linkedin.com/in/devrocha13</a></span>
+      <span><a href="https://github.com/Armandorocha13">github.com/Armandorocha13</a></span>
+      <span><a href="https://www.aero-code.tech">aero-code.tech</a></span>
+    </div>
+  </header>
+
+  <h2>Resumo profissional</h2>
+  <p>
+    Analista de Dados com atuação em engenharia de dados e BI no setor de infraestrutura e operações.
+    Desenvolvo pipelines de ETL em Python e n8n que integram fontes heterogêneas (e-mail, WMS e sistemas
+    operacionais), modelo os dados em Star Schema e entrego painéis em Power BI (DAX) para suporte à decisão.
+    Foco em qualidade e governança de dados, automação de rotinas e redução de trabalho manual.
+    Certificado Microsoft Azure Data Fundamentals <span style="white-space:nowrap">(DP-900)</span>. Graduando em Análise e Desenvolvimento de Sistemas
+    (UVA, conclusão prevista em 2026).
+  </p>
+
+  <h2>Competências técnicas</h2>
+  <dl class="competencias">
+    <dt>Engenharia de Dados</dt>
+    <dd>Pipelines de ETL, integração de múltiplas fontes e APIs, Python, n8n, Docker, Git</dd>
+    <dt>Modelagem e Bancos de Dados</dt>
+    <dd>SQL, modelagem dimensional (Star Schema), PostgreSQL (Supabase), MySQL, SQLite</dd>
+    <dt>Análise de Dados e BI</dt>
+    <dd>Power BI, DAX, Excel avançado (INDEX/MATCH), definição de métricas e indicadores</dd>
+    <dt>IA aplicada a dados</dt>
+    <dd>LLMs locais (Ollama/DeepSeek) em rotinas de ETL, Model Context Protocol (MCP)</dd>
+    <dt>Nuvem</dt>
+    <dd>Microsoft Azure: fundamentos de dados (DP-900)</dd>
+  </dl>
+
+  <h2>Experiência profissional</h2>
+  <div class="exp-topo">
+    <div><span class="exp-cargo">Analista de Planejamento / BI</span> — <span class="exp-empresa">FFA Infraestrutura</span></div>
+    <div class="exp-data">12/2025 – atual • Queimados, RJ</div>
+  </div>
+  <ul>
+    <li>
+      <strong>AXIS automate:</strong> liderei o desenvolvimento de um sistema em Python que automatiza a extração
+      de dados e o envio de relatórios, otimizando rotinas operacionais recorrentes e reduzindo o trabalho manual.
+    </li>
+    <li>
+      <strong>Automação de ETL:</strong> automatizei rotinas de extração, tratamento e consolidação com Python e n8n,
+      incluindo LLMs locais em terminais restritos, eliminando horas de trabalho manual recorrente e reduzindo
+      erros de consolidação.
+    </li>
+    <li>
+      <strong>Governança de dados:</strong> reestruturei métricas corporativas críticas e atualizei as regras de negócio
+      de controle de ativos, aumentando a rastreabilidade e reduzindo perdas por apropriação indébita.
+    </li>
+  </ul>
+  <div class="stack"><b>Stack:</b> Python, n8n, SQL, Power BI, DAX, Star Schema, LLMs locais</div>
+
+  <h2>Formação acadêmica</h2>
+  <div class="exp-topo">
+    <div><span class="exp-cargo">Análise e Desenvolvimento de Sistemas</span> — <span class="exp-empresa">Universidade Veiga de Almeida (UVA)</span></div>
+    <div class="exp-data">Conclusão prevista: 2026</div>
+  </div>
+  <div class="stack"><b>Destaques:</b> Banco de Dados, Análise de Dados, Engenharia de Dados</div>
+
+  <h2>Certificações</h2>
+  <div class="exp-topo">
+    <div><span class="exp-cargo">Microsoft Certified: Azure Data Fundamentals (DP-900)</span> — <span class="exp-empresa">Microsoft</span></div>
+  </div>
+
+  <h2>Idiomas</h2>
+  <p>Português (nativo)</p>
+</div>
+</body>
+</html>

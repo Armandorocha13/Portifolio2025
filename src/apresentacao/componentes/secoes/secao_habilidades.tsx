@@ -1,165 +1,48 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { 
-  Code, 
-  Database, 
-  Cloud, 
-  Terminal, 
+import {
+  BarChart3,
+  Bot,
+  Cloud,
+  Code,
+  Container,
+  Database,
   GitBranch,
-  Zap,
-  Monitor,
-  Server,
-  Settings,
-  Languages,
-  Briefcase,
-  Users,
+  Layers,
+  Sheet,
+  Terminal,
+  Workflow,
 } from "lucide-react";
 
 /**
- * Array de habilidades técnicas
- * Cada habilidade contém título, descrição e ícone
+ * Habilidades técnicas agrupadas por categoria (alinhadas ao currículo)
  */
 const dadosHabilidades = [
-  // Linguagens e Análise de Dados
-  {
-    titulo: "Java",
-    descricao: "Linguagem principal utilizada para desenvolvimento de sistemas e lógica robusta.",
-    categoria: "Habilidades de Dados",
-    icone: Code,
-    nivel: 90,
-  },
-  {
-    titulo: "SQL",
-    descricao: "Consultas complexas e manipulação de grandes volumes de dados em bancos relacionais.",
-    categoria: "Habilidades de Dados",
-    icone: Database,
-    nivel: 85,
-  },
-  {
-    titulo: "Inteligência Artificial",
-    descricao: "Implementação e integração de soluções de IA no ecossistema corporativo.",
-    categoria: "Habilidades de Dados",
-    icone: Zap,
-    nivel: 80,
-  },
-  {
-    titulo: "Power BI",
-    descricao: "Criação de dashboards de alto nível e visualização de dados para tomada de decisão.",
-    categoria: "Habilidades de Dados",
-    icone: Monitor,
-    nivel: 90,
-  },
-  {
-    titulo: "Excel Avançado",
-    descricao: "Análise de dados complexa, automação de planilhas e relatórios dinâmicos.",
-    categoria: "Habilidades de Dados",
-    icone: Monitor,
-    nivel: 95,
-  },
-
-  // TI e Infraestrutura
-  {
-    titulo: "Suporte Técnico",
-    descricao: "Resolução de problemas de hardware e software e apoio ao usuário final.",
-    categoria: "TI e Infraestrutura",
-    icone: Settings,
-    nivel: 90,
-  },
-  {
-    titulo: "Redes",
-    descricao: "Configuração e administração de redes de computadores.",
-    categoria: "TI e Infraestrutura",
-    icone: Cloud,
-    nivel: 80,
-  },
-  {
-    titulo: "Sistemas Operacionais",
-    descricao: "Administração de ambientes Windows e Linux.",
-    categoria: "TI e Infraestrutura",
-    icone: Monitor,
-    nivel: 85,
-  },
-  {
-    titulo: "Governança de TI",
-    descricao: "Aplicação de frameworks e melhores práticas de gestão de tecnologia.",
-    categoria: "TI e Infraestrutura",
-    icone: Briefcase,
-    nivel: 80,
-  },
-
-  // Soft Skills
-  {
-    titulo: "Comunicação",
-    descricao: "Capacidade de transmitir informações de forma clara e assertiva.",
-    categoria: "Soft Skills",
-    icone: Users,
-    nivel: 95,
-  },
-  {
-    titulo: "Trabalho em Equipe",
-    descricao: "Colaboração efetiva para atingir objetivos comuns do projeto.",
-    categoria: "Soft Skills",
-    icone: Users,
-    nivel: 90,
-  },
-  {
-    titulo: "Proatividade",
-    descricao: "Iniciativa para identificar melhorias e antecipar soluções.",
-    categoria: "Soft Skills",
-    icone: Zap,
-    nivel: 90,
-  },
-  {
-    titulo: "Atendimento ao Cliente",
-    descricao: "Foco na satisfação do usuário e excelência no suporte.",
-    categoria: "Soft Skills",
-    icone: Users,
-    nivel: 95,
-  },
-
-  // Frameworks e Tecnologias
-  {
-    titulo: "JDBC",
-    descricao: "Conectividade de bancos de dados em aplicações Java.",
-    categoria: "Frameworks e Tecnologias",
-    icone: Database,
-    nivel: 85,
-  },
-  {
-    titulo: "MySQL",
-    descricao: "Gerenciamento de bancos de dados relacionais.",
-    categoria: "Frameworks e Tecnologias",
-    icone: Database,
-    nivel: 85,
-  },
-  {
-    titulo: "REST API",
-    descricao: "Desenvolvimento e consumo de serviços web.",
-    categoria: "Frameworks e Tecnologias",
-    icone: Terminal,
-    nivel: 80,
-  },
-  {
-    titulo: "Git & GitHub",
-    descricao: "Controle de versão e colaboração em código.",
-    categoria: "Frameworks e Tecnologias",
-    icone: GitBranch,
-    nivel: 85,
-  },
-  {
-    titulo: "MCP",
-    descricao: "Conhecimentos certificados pela Microsoft.",
-    categoria: "Frameworks e Tecnologias",
-    icone: Settings,
-    nivel: 80,
-  },
+  { titulo: "Pipelines de ETL", categoria: "Engenharia de Dados", icone: Workflow },
+  { titulo: "Integração de fontes e APIs", categoria: "Engenharia de Dados", icone: Workflow },
+  { titulo: "Python", categoria: "Engenharia de Dados", icone: Terminal },
+  { titulo: "n8n", categoria: "Engenharia de Dados", icone: Workflow },
+  { titulo: "Docker", categoria: "Engenharia de Dados", icone: Container },
+  { titulo: "Git", categoria: "Engenharia de Dados", icone: GitBranch },
+  { titulo: "SQL", categoria: "Modelagem & Bancos", icone: Database },
+  { titulo: "Modelagem dimensional (Star Schema)", categoria: "Modelagem & Bancos", icone: Layers },
+  { titulo: "PostgreSQL (Supabase)", categoria: "Modelagem & Bancos", icone: Database },
+  { titulo: "MySQL", categoria: "Modelagem & Bancos", icone: Database },
+  { titulo: "SQLite", categoria: "Modelagem & Bancos", icone: Database },
+  { titulo: "Power BI", categoria: "Análise & BI", icone: BarChart3 },
+  { titulo: "DAX", categoria: "Análise & BI", icone: BarChart3 },
+  { titulo: "Excel avançado", categoria: "Análise & BI", icone: Sheet },
+  { titulo: "Métricas e indicadores", categoria: "Análise & BI", icone: BarChart3 },
+  { titulo: "Microsoft Azure (DP-900)", categoria: "Nuvem & IA", icone: Cloud },
+  { titulo: "LLMs locais (Ollama/DeepSeek) em ETL", categoria: "Nuvem & IA", icone: Bot },
+  { titulo: "Model Context Protocol (MCP)", categoria: "Nuvem & IA", icone: Bot },
 ];
 
 /**
  * Componente Habilidades - Seção de Habilidades
  * 
- * Exibe as habilidades técnicas do desenvolvedor organizadas por categoria
+ * Exibe as habilidades técnicas organizadas por categoria
  * Inclui animações de entrada quando a seção entra na viewport
  * Layout responsivo com grid adaptável
  */
@@ -173,10 +56,10 @@ export const SkillsSection = () => {
   const categorias = Array.from(new Set(dadosHabilidades.map(habilidade => habilidade.categoria)));
 
   const iconesCategoria: Record<string, typeof Code> = {
-    'Habilidades de Dados': Languages,
-    'Frameworks e Tecnologias': Monitor,
-    'TI e Infraestrutura': Server,
-    'Soft Skills': Users,
+    'Engenharia de Dados': Workflow,
+    'Modelagem & Bancos': Database,
+    'Análise & BI': BarChart3,
+    'Nuvem & IA': Cloud,
   };
 
   const lidarVirarCartao = (categoria: string) => {
@@ -201,15 +84,15 @@ export const SkillsSection = () => {
           className="mb-12"
         >
           <span className="mono mb-4 block">
-            <span className="text-foreground">03.</span> Habilidades
+            <span className="text-foreground">04.</span> Habilidades
           </span>
           
           <h2 className="heading-lg mb-4">
-            Tecnologias que<br />
-            <span className="text-muted-foreground">domino</span>
+            Stack de<br />
+            <span className="text-muted-foreground">dados</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl">
-            Conjunto de habilidades técnicas, ferramentas e competências que utilizo para desenvolver soluções e prestar serviços de qualidade.
+            Ferramentas que uso para ingerir, transformar, modelar e entregar dados prontos para decisão.
           </p>
         </motion.div>
 
@@ -226,7 +109,7 @@ export const SkillsSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={estaVisivel ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: indiceCategoria * 0.15 }}
-                className="w-full h-full min-h-[220px] max-h-[350px] perspective-1000"
+                className="w-full h-full min-h-[270px] max-h-[350px] perspective-1000"
                 style={{ perspective: '1000px' }}
               >
                 <motion.div

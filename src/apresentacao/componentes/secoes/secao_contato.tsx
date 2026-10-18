@@ -25,7 +25,7 @@ export const ContactSection = () => {
           className="text-center mb-16"
         >
           <span className="mono mb-4 block">
-            <span className="text-foreground">05.</span> Contato
+            <span className="text-foreground">06.</span> Contato
           </span>
 
           <h2 className="heading-lg mb-6">
@@ -34,8 +34,8 @@ export const ContactSection = () => {
           </h2>
 
           <p className="body-lg max-w-xl mx-auto">
-            Estou sempre aberto a novas oportunidades e projetos interessantes.
-            Se você tem uma ideia, vamos conversar!
+            Estou aberto a oportunidades em Análise de Dados e Engenharia de Dados.
+            Se você precisa transformar dados em decisões, vamos conversar!
           </p>
         </motion.div>
 
