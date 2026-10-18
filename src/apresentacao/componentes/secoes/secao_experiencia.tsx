@@ -18,11 +18,11 @@ const experiencias: Experiencia[] = [
     periodo: "12/2025 – Atual",
     local: "Queimados, RJ",
     destaques: [
-      "Liderei o desenvolvimento do painel “One Page Report IHS”, consolidando dados fragmentados de Outlook, WMS e Aniel em um único modelo no Power BI (Star Schema + DAX), reduzindo falhas de inventário e agilizando o fechamento do relatório.",
-      "Reestruturei métricas corporativas críticas e atualizei as regras de negócio de controle de ativos, aumentando a rastreabilidade e reduzindo perdas.",
-      "Automatizei rotinas de ETL com Python e n8n (incluindo LLMs locais em terminais restritos), eliminando horas de trabalho manual recorrente e reduzindo erros de consolidação.",
+      "AXIS automate: liderei o desenvolvimento de um sistema em Python que automatiza a extração de dados e o envio de relatórios, otimizando rotinas operacionais recorrentes e reduzindo o trabalho manual.",
+      "Automação de ETL: automatizei rotinas de extração, tratamento e consolidação com Python e n8n, incluindo LLMs locais em terminais restritos, eliminando horas de trabalho manual recorrente e reduzindo erros de consolidação.",
+      "Governança de dados: reestruturei métricas corporativas críticas e atualizei as regras de negócio de controle de ativos, aumentando a rastreabilidade e reduzindo perdas.",
     ],
-    tecnologias: ["Power BI", "DAX", "Star Schema", "Python", "n8n", "ETL", "LLMs locais"],
+    tecnologias: ["Python", "n8n", "SQL", "ETL", "Star Schema", "Power BI", "DAX", "LLMs locais"],
   },
 ];
 
@@ -30,7 +30,7 @@ const formacao = {
   curso: "Análise e Desenvolvimento de Sistemas",
   instituicao: "Universidade Veiga de Almeida (UVA)",
   periodo: "Previsão de conclusão: 2026",
-  destaques: ["Engenharia de Software", "Arquitetura de Computadores", "Banco de Dados"],
+  destaques: ["Banco de Dados", "Engenharia de Software", "Arquitetura de Computadores"],
 };
 
 /**
@@ -88,7 +88,16 @@ export const ExperienceSection = () => {
                 {experiencia.destaques.map((destaque) => (
                   <li key={destaque} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground/60" />
-                    <span>{destaque}</span>
+                    <span>
+                      {destaque.includes(": ") ? (
+                        <>
+                          <strong className="font-medium text-foreground">{destaque.split(": ")[0]}:</strong>{" "}
+                          {destaque.slice(destaque.indexOf(": ") + 2)}
+                        </>
+                      ) : (
+                        destaque
+                      )}
+                    </span>
                   </li>
                 ))}
               </ul>

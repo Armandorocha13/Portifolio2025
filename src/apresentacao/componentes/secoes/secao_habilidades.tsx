@@ -18,25 +18,24 @@ import {
  * Habilidades técnicas agrupadas por categoria (alinhadas ao currículo)
  */
 const dadosHabilidades = [
-  { titulo: "Power BI", descricao: "Painéis para suporte à decisão em operações e infraestrutura.", categoria: "Dados & BI", icone: BarChart3 },
-  { titulo: "DAX", descricao: "Medidas e métricas corporativas no Power BI.", categoria: "Dados & BI", icone: BarChart3 },
-  { titulo: "Modelagem Star Schema", descricao: "Modelos dimensionais que unificam fontes fragmentadas.", categoria: "Dados & BI", icone: Layers },
-  { titulo: "ETL", descricao: "Extração, tratamento e consolidação de dados de várias fontes.", categoria: "Dados & BI", icone: Workflow },
-  { titulo: "Excel Avançado", descricao: "Análises, INDEX/MATCH e relatórios dinâmicos.", categoria: "Dados & BI", icone: Sheet },
-  { titulo: "SQL", descricao: "Consultas e manipulação de dados em bancos relacionais.", categoria: "Bancos de Dados", icone: Database },
-  { titulo: "MySQL", descricao: "Bancos relacionais para aplicações e análises.", categoria: "Bancos de Dados", icone: Database },
-  { titulo: "SQLite", descricao: "Bancos leves e locais para automações.", categoria: "Bancos de Dados", icone: Database },
-  { titulo: "Supabase (PostgreSQL)", descricao: "Persistência em nuvem para pipelines e aplicações.", categoria: "Bancos de Dados", icone: Database },
-  { titulo: "Python", descricao: "Automação de rotinas de ETL e scripts de dados.", categoria: "Automação & IA", icone: Terminal },
-  { titulo: "n8n", descricao: "Orquestração de fluxos e integrações automatizadas.", categoria: "Automação & IA", icone: Workflow },
-  { titulo: "Model Context Protocol (MCP)", descricao: "Integração de ferramentas e dados com agentes de IA.", categoria: "Automação & IA", icone: Bot },
-  { titulo: "LLMs locais (Ollama/DeepSeek)", descricao: "Modelos locais aplicados a ETL em terminais restritos.", categoria: "Automação & IA", icone: Bot },
-  { titulo: "Java (Spring Boot)", descricao: "Back-end e aplicações com lógica de negócio.", categoria: "Desenvolvimento & Ferramentas", icone: Code },
-  { titulo: "REST APIs", descricao: "Desenvolvimento e consumo de serviços web.", categoria: "Desenvolvimento & Ferramentas", icone: Code },
-  { titulo: "React / Next.js", descricao: "Interfaces web e painéis customizados.", categoria: "Desenvolvimento & Ferramentas", icone: Code },
-  { titulo: "TypeScript", descricao: "Tipagem e manutenção de aplicações front-end.", categoria: "Desenvolvimento & Ferramentas", icone: Code },
-  { titulo: "Docker", descricao: "Ambientes padronizados e reproduzíveis.", categoria: "Desenvolvimento & Ferramentas", icone: Container },
-  { titulo: "Git", descricao: "Controle de versão e colaboração em código.", categoria: "Desenvolvimento & Ferramentas", icone: GitBranch },
+  { titulo: "Pipelines de ETL", categoria: "Engenharia de Dados", icone: Workflow },
+  { titulo: "Integração de múltiplas fontes", categoria: "Engenharia de Dados", icone: Workflow },
+  { titulo: "Python", categoria: "Engenharia de Dados", icone: Terminal },
+  { titulo: "n8n", categoria: "Engenharia de Dados", icone: Workflow },
+  { titulo: "REST APIs", categoria: "Engenharia de Dados", icone: Code },
+  { titulo: "Docker", categoria: "Engenharia de Dados", icone: Container },
+  { titulo: "Git", categoria: "Engenharia de Dados", icone: GitBranch },
+  { titulo: "SQL", categoria: "Modelagem & Bancos", icone: Database },
+  { titulo: "Modelagem dimensional (Star Schema)", categoria: "Modelagem & Bancos", icone: Layers },
+  { titulo: "PostgreSQL (Supabase)", categoria: "Modelagem & Bancos", icone: Database },
+  { titulo: "MySQL", categoria: "Modelagem & Bancos", icone: Database },
+  { titulo: "SQLite", categoria: "Modelagem & Bancos", icone: Database },
+  { titulo: "Power BI", categoria: "Análise & BI", icone: BarChart3 },
+  { titulo: "DAX", categoria: "Análise & BI", icone: BarChart3 },
+  { titulo: "Excel avançado", categoria: "Análise & BI", icone: Sheet },
+  { titulo: "Métricas e indicadores", categoria: "Análise & BI", icone: BarChart3 },
+  { titulo: "LLMs locais (Ollama/DeepSeek) em ETL", categoria: "IA aplicada a Dados", icone: Bot },
+  { titulo: "Model Context Protocol (MCP)", categoria: "IA aplicada a Dados", icone: Bot },
 ];
 
 /**
@@ -56,10 +55,10 @@ export const SkillsSection = () => {
   const categorias = Array.from(new Set(dadosHabilidades.map(habilidade => habilidade.categoria)));
 
   const iconesCategoria: Record<string, typeof Code> = {
-    'Dados & BI': BarChart3,
-    'Bancos de Dados': Database,
-    'Automação & IA': Bot,
-    'Desenvolvimento & Ferramentas': Code,
+    'Engenharia de Dados': Workflow,
+    'Modelagem & Bancos': Database,
+    'Análise & BI': BarChart3,
+    'IA aplicada a Dados': Bot,
   };
 
   const lidarVirarCartao = (categoria: string) => {
@@ -89,10 +88,10 @@ export const SkillsSection = () => {
           
           <h2 className="heading-lg mb-4">
             Stack de<br />
-            <span className="text-muted-foreground">dados e automação</span>
+            <span className="text-muted-foreground">dados</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl">
-            Ferramentas que uso no dia a dia para consolidar dados, modelar, automatizar e entregar painéis de decisão.
+            Ferramentas que uso para ingerir, transformar, modelar e entregar dados prontos para decisão.
           </p>
         </motion.div>
 
@@ -109,7 +108,7 @@ export const SkillsSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={estaVisivel ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: indiceCategoria * 0.15 }}
-                className="w-full h-full min-h-[220px] max-h-[350px] perspective-1000"
+                className="w-full h-full min-h-[270px] max-h-[350px] perspective-1000"
                 style={{ perspective: '1000px' }}
               >
                 <motion.div

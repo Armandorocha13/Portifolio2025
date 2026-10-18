@@ -34,8 +34,8 @@ export const ContactSection = () => {
           </h2>
 
           <p className="body-lg max-w-xl mx-auto">
-            Estou sempre aberto a novas oportunidades e projetos interessantes.
-            Se você tem uma ideia, vamos conversar!
+            Estou aberto a oportunidades em Análise de Dados e Engenharia de Dados.
+            Se você precisa transformar dados em decisões, vamos conversar!
           </p>
         </motion.div>
 

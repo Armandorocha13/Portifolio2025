@@ -1,7 +1,16 @@
 import { motion } from "framer-motion"; // Importa componente animado do Framer Motion
 import { useInView } from "framer-motion"; // Hook para checar quando elemento está visível
 import { useRef, useState } from "react"; // Importa hooks do React
+import { ArrowRight, BarChart3, Boxes, DatabaseZap, Workflow } from "lucide-react";
 import { exportar_curriculo_pdf } from "@/compartilhado/curriculo/exportar_curriculo_pdf";
+
+// Etapas do ciclo de dados em que atuo
+const etapasPipeline = [
+  { icone: DatabaseZap, titulo: "Ingestão", descricao: "Extração e integração de fontes como e-mail, WMS, sistemas e APIs." },
+  { icone: Workflow, titulo: "Transformação", descricao: "ETL com Python e n8n: limpeza, padronização e consolidação." },
+  { icone: Boxes, titulo: "Modelagem", descricao: "Modelos dimensionais (Star Schema) em SQL e PostgreSQL." },
+  { icone: BarChart3, titulo: "Entrega", descricao: "Painéis em Power BI (DAX) e indicadores para decisão." },
+];
 
 /**
  * Componente Sobre - Seção "Sobre Mim"
@@ -55,11 +64,11 @@ export const AboutSection = () => {
           >
             {/* Texto de apresentação */}
             <p className="body-md">
-              <strong>Analista de Dados / BI</strong> na FFA Infraestrutura e graduando em Análise e Desenvolvimento de Sistemas (UVA). Atuo na interseção entre dados, BI e desenvolvimento de sistemas, em ambientes de infraestrutura e operações.
+              Sou <strong>Analista de Dados</strong> com atuação em <strong>engenharia de dados</strong> e BI no setor de infraestrutura e operações, hoje na FFA Infraestrutura. Graduando em Análise e Desenvolvimento de Sistemas (UVA, 2026).
             </p>
 
             <p className="body-md">
-              Consolido dados fragmentados de fontes como Outlook, WMS e Aniel em modelos dimensionais (Star Schema) e painéis em Power BI com DAX. Automatizo rotinas de ETL com Python e n8n, inclusive com LLMs locais, com foco em governança de dados, redução de falhas de inventário e menos trabalho manual.
+              Desenvolvo pipelines de ETL em Python e n8n que integram fontes heterogêneas, como e-mail, WMS e sistemas operacionais. Modelo os dados em Star Schema e entrego painéis em Power BI (DAX) para suporte à decisão, com foco em qualidade e governança de dados e na redução de trabalho manual.
             </p>
             {/* Botão para baixar currículo */}
             <button
@@ -67,7 +76,7 @@ export const AboutSection = () => {
               onClick={exportar_curriculo_pdf}
               className="inline-flex items-center px-5 py-2 rounded-md bg-slate-600 text-white font-thin transition-colors hover:bg-transparent/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
-              Baixar Currículo
+              Ver currículo (PDF)
             </button>
           </motion.div>
 
@@ -132,7 +141,7 @@ export const AboutSection = () => {
                       </div>
                       <p className="mono text-xs">Armando Rocha</p>
                       <p className="text-muted-foreground text-sm mt-1">
-                        Analista de Dados / BI
+                        Analista de Dados
                       </p>
                     </div>
                   </div>
@@ -150,6 +159,34 @@ export const AboutSection = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* Ciclo de dados: do dado bruto à decisão */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={estaVisivel ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+          className="mt-16 md:mt-24"
+        >
+          <p className="mono mb-6">Do dado bruto à decisão</p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {etapasPipeline.map((etapa, indice) => {
+              const Icone = etapa.icone;
+              return (
+                <div key={etapa.titulo} className="relative rounded-2xl border border-white/20 bg-background/80 p-5">
+                  <div className="mb-3 flex items-center justify-between">
+                    <Icone className="h-5 w-5 text-muted-foreground" />
+                    <span className="mono text-xs">0{indice + 1}</span>
+                  </div>
+                  <h3 className="mb-1 font-semibold">{etapa.titulo}</h3>
+                  <p className="text-sm text-muted-foreground">{etapa.descricao}</p>
+                  {indice < etapasPipeline.length - 1 && (
+                    <ArrowRight className="absolute -right-3 top-1/2 z-10 hidden h-4 w-4 -translate-y-1/2 text-muted-foreground lg:block" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

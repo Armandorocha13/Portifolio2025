@@ -53,11 +53,11 @@ const EfeitoDigitacao = ({
 
 // Sequência de ícones e frases associadas
 const SEQUENCIA: { forma: WireframeShape; frase: string }[] = [
-  { forma: 'brain',     frase: 'Inteligência Artificial'   },
-  { forma: 'gear',      frase: 'Automação de Processos'    },
   { forma: 'neural',    frase: 'Análise de Dados'          },
-  { forma: 'fibonacci', frase: 'Padrões e Algoritmos'      },
-  { forma: 'code',      frase: 'Desenvolvimento de Sistemas' },
+  { forma: 'gear',      frase: 'Pipelines e Automação'     },
+  { forma: 'fibonacci', frase: 'Modelagem de Dados'        },
+  { forma: 'brain',     frase: 'IA aplicada a Dados'       },
+  { forma: 'code',      frase: 'Engenharia de Dados'       },
 ];
 
 /**
@@ -137,15 +137,19 @@ export const HeroSection = () => {
           <EfeitoDigitacao
             frases={[
               "<AeroCode/>",
-              "Transformando Dados em",
-              "Decisões Estratégicas",
-              "Inteligência e Precisão",
+              "Dados brutos",
+              "Pipelines confiáveis",
+              "Decisões estratégicas",
             ]}
             velocidadeDigitacao={100}
             velocidadeApagamento={40}
             tempoPausa={1500}
           />
         </h1>
+        <p className="mono flex flex-col items-center gap-1 rounded-md bg-background/60 px-3 py-2 text-center text-xs tracking-[0.2em] backdrop-blur-sm md:flex-row md:gap-0 md:text-sm">
+          <span className="text-foreground">Armando Rocha</span>
+          <span><span className="hidden md:inline"> · </span>Analista de Dados · Engenharia de Dados</span>
+        </p>
       </div>
     </section>
   );
