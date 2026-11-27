@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0b0f14"/><rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#00e0ff" stroke-width="2"/><text x="32" y="42" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="700" fill="#e2e8f0">AR</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Favicon AERO: "A" branco, desenhado em vetor (sem depender de fonte), sobre preto -->
+  <rect width="64" height="64" rx="14" fill="#000"/>
+  <path fill="#fff" fill-rule="evenodd" d="M24.5 11h15L52 53H41.6l-2.5-9H24.9l-2.5 9H12zM27.4 35h9.2L32 18.5z"/>
+</svg>
