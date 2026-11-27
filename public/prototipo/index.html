@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Protótipo — fundo HyperFrames guiado pela rolagem | AERO</title>
-    <link rel="stylesheet" href="vendor/lenis.css" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/prototipo/vendor/lenis.css" />
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body { background: #000; color: #fff; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
@@ -88,7 +89,7 @@
 
     <div id="medidor" aria-hidden="true">carregando…</div>
 
-    <script src="vendor/lenis.min.js"></script>
+    <script src="/prototipo/vendor/lenis.min.js"></script>
     <script>
       const modoLeve = new URLSearchParams(location.search).has("leve");
       const reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -101,7 +102,7 @@
       if (modoLeve) {
         const iframe = document.createElement("iframe");
         iframe.className = "fundo";
-        iframe.src = "fundo/index.html?leve";
+        iframe.src = "/prototipo/fundo/?leve";
         iframe.setAttribute("aria-hidden", "true");
         iframe.tabIndex = -1;
         document.body.prepend(iframe);
@@ -121,11 +122,11 @@
         });
       } else {
         const script = document.createElement("script");
-        script.src = "vendor/hyperframes-player.global.js";
+        script.src = "/prototipo/vendor/hyperframes-player.global.js";
         script.onload = () => {
           const player = document.createElement("hyperframes-player");
           player.className = "fundo";
-          player.setAttribute("src", "fundo/index.html");
+          player.setAttribute("src", "/prototipo/fundo/");
           player.setAttribute("muted", "");
           player.setAttribute("disable-click-to-play", "");
           player.setAttribute("disable-fullscreen", "");

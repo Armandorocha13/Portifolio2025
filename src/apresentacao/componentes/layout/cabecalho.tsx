@@ -1,5 +1,5 @@
 import React from 'react';
-import { exportar_curriculo_pdf } from "@/compartilhado/curriculo/exportar_curriculo_pdf";
+import { Link } from "react-router-dom";
 import { MenuToggleIcon } from "@/compartilhado/icones/icone_menu_toggle";
 import { useScroll } from "@/compartilhado/ganchos/usar_scroll";
 import { cn } from "@/compartilhado/biblioteca/utilitarios";
@@ -12,34 +12,46 @@ import { Button, buttonVariants } from "@/compartilhado/interface/botao";
  * Muda de estilo quando o usuário faz scroll (backdrop blur e borda)
  * Inclui links de navegação e botão de currículo
  */
-export function Header() {
+type LinkMenu = { label: string; href: string };
+type Acao = { label: string; href?: string; onClick?: () => void };
+
+type HeaderProps = {
+	/** Links do menu. Âncoras (#secao) viram <a>; caminhos (/rota) viram <Link>. */
+	links: LinkMenu[];
+	/** Botão de destaque à direita (ex.: Pedir orçamento) */
+	acao: Acao;
+	/** Mostra a numeração 01., 02. antes de cada link (estilo do portfólio) */
+	numerado?: boolean;
+};
+
+/** Link interno ou âncora, conforme o href */
+function ItemMenu({ href, className, onClick, children }: { href: string; className?: string; onClick?: () => void; children: React.ReactNode }) {
+	if (href.startsWith('/')) {
+		return <Link to={href} className={className} onClick={onClick}>{children}</Link>;
+	}
+	return <a href={href} className={className} onClick={onClick}>{children}</a>;
+}
+
+function BotaoAcao({ acao, className, size, aoClicar }: { acao: Acao; className?: string; size: 'sm' | 'lg'; aoClicar?: () => void }) {
+	if (acao.href) {
+		return (
+			<ItemMenu href={acao.href} className={buttonVariants({ variant: 'outline', size, className })} onClick={aoClicar}>
+				{acao.label}
+			</ItemMenu>
+		);
+	}
+	return (
+		<Button variant="outline" size={size} className={className} onClick={() => { aoClicar?.(); acao.onClick?.(); }}>
+			{acao.label}
+		</Button>
+	);
+}
+
+export function Header({ links, acao, numerado = false }: HeaderProps) {
 	// Estado para controlar abertura/fechamento do menu mobile
 	const [aberto, setAberto] = React.useState(false);
 	// Detecta se o usuário fez scroll (muda estilo do cabeçalho)
 	const rolou = useScroll(10);
-
-	const links = [
-		{
-			label: 'Sobre',
-			href: '#sobre',
-		},
-		{
-			label: 'Experiência',
-			href: '#experiencia',
-		},
-		{
-			label: 'Habilidades',
-			href: '#habilidades',
-		},
-		{
-			label: 'Projetos',
-			href: '#projetos',
-		},
-		{
-			label: 'Contato',
-			href: '#contato',
-		},
-	];
 
 	React.useEffect(() => {
 		if (aberto) {
@@ -91,32 +103,33 @@ export function Header() {
 					},
 				)}
 			>
-				<a
-					href="#"
+				<Link
+					to="/"
 					className="font-mono text-lg font-semibold tracking-tight hover:scale-105 transition-transform"
+					aria-label="AERO, página inicial"
 				>
 					<span className="text-foreground">&lt;</span>
 					<span className="text-muted-foreground">AeroCode</span>
 					<span className="text-foreground">/&gt;</span>
-				</a>
+				</Link>
 				<div className="hidden items-center gap-8 md:flex">
 					{links.map((link, i) => (
-						<a
-							key={i}
+						<ItemMenu
+							key={link.href}
 							href={link.href}
 							className="text-sm text-muted-foreground hover:text-foreground transition-colors"
 						>
-							<span className="mono text-xs text-foreground mr-1">
-								0{i + 2}.
-							</span>
+							{numerado && (
+								<span className="mono text-xs text-foreground mr-1">
+									0{i + 2}.
+								</span>
+							)}
 							{link.label}
-						</a>
+						</ItemMenu>
 					))}
-					<Button variant="outline" size="sm" className="ml-4" onClick={exportar_curriculo_pdf}>
-						Currículo
-					</Button>
+					<BotaoAcao acao={acao} size="sm" className="ml-4" />
 				</div>
-				<Button size="icon" variant="outline" onClick={() => setAberto(!aberto)} className="md:hidden">
+				<Button size="icon" variant="outline" onClick={() => setAberto(!aberto)} className="md:hidden" aria-label={aberto ? 'Fechar menu' : 'Abrir menu'} aria-expanded={aberto}>
 					<MenuToggleIcon open={aberto} className="size-5" duration={300} />
 				</Button>
 			</nav>
@@ -136,8 +149,8 @@ export function Header() {
 				>
 					<div className="grid gap-y-2">
 						{links.map((link, index) => (
-							<a
-								key={link.label}
+							<ItemMenu
+								key={link.href}
 								className={buttonVariants({
 									variant: 'ghost',
 									className: 'justify-start text-2xl font-medium',
@@ -145,25 +158,17 @@ export function Header() {
 								href={link.href}
 								onClick={() => setAberto(false)}
 							>
-								<span className="mono text-sm text-muted-foreground mr-2">
-									0{index + 2}.
-								</span>
+								{numerado && (
+									<span className="mono text-sm text-muted-foreground mr-2">
+										0{index + 2}.
+									</span>
+								)}
 								{link.label}
-							</a>
+							</ItemMenu>
 						))}
 					</div>
 					<div className="flex flex-col gap-2">
-						<Button
-							variant="outline"
-							size="lg"
-							className="w-full"
-							onClick={() => {
-								setAberto(false);
-								exportar_curriculo_pdf();
-							}}
-						>
-							Currículo
-						</Button>
+						<BotaoAcao acao={acao} size="lg" className="w-full" aoClicar={() => setAberto(false)} />
 					</div>
 				</div>
 			</div>

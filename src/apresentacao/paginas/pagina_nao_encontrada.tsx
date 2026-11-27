@@ -1,24 +1,20 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const NotFoundPage = () => {
-  const location = useLocation();
+import { Seo } from "@/apresentacao/componentes/seo";
+import { buttonVariants } from "@/compartilhado/interface/botao";
 
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
-
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
-        <a href="/" className="text-primary underline hover:text-primary/90">
-          Return to Home
-        </a>
-      </div>
+const NotFoundPage = () => (
+  <section className="flex min-h-[80vh] items-center justify-center px-6 pt-24">
+    <Seo titulo="Página não encontrada | AERO" descricao="A página que você procurou não existe." caminho="/404" semIndexar />
+    <div className="text-center">
+      <span className="mono mb-4 block">Erro 404</span>
+      <h1 className="heading-lg mb-4">Esta página não existe</h1>
+      <p className="body-lg mb-8">O endereço pode ter mudado. Volte para o início e siga de lá.</p>
+      <Link to="/" className={buttonVariants({ size: "lg", className: "rounded-full" })}>
+        Ir para o início
+      </Link>
     </div>
-  );
-};
+  </section>
+);
 
 export default NotFoundPage;
