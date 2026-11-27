@@ -9,7 +9,9 @@ import { useEffect, useRef } from "react";
  *  - #servicos  pontos espalhados se organizam numa grade
  *  - #processo  linha de fluxo se desenha e acende 4 etapas
  *  - #chamada   assinatura AERO se forma
- * O Lenis suaviza a rolagem. Com "reduzir movimento" ativo, o fundo fica parado.
+ * O Lenis suaviza a rolagem. Com "reduzir movimento" ativo (comum no Windows com os efeitos
+ * de animação desligados), as cenas continuam seguindo a rolagem, mas sem a rolagem suave:
+ * o movimento só acontece enquanto a própria pessoa rola a página.
  */
 
 const DENTES = "M165.0 0.0 L164.7 10.4 L198.7 23.0 L193.2 51.8 L156.9 51.0 L142.9 82.5 L137.4 91.3 L160.6 119.2 L141.4 141.4 L110.4 122.6 L82.5 142.9 L73.4 147.8 L79.4 183.6 L51.8 193.2 L34.3 161.4 L0.0 165.0 L-10.4 164.7 L-23.0 198.7 L-51.8 193.2 L-51.0 156.9 L-82.5 142.9 L-91.3 137.4 L-119.2 160.6 L-141.4 141.4 L-122.6 110.4 L-142.9 82.5 L-147.8 73.4 L-183.6 79.4 L-193.2 51.8 L-161.4 34.3 L-165.0 0.0 L-164.7 -10.4 L-198.7 -23.0 L-193.2 -51.8 L-156.9 -51.0 L-142.9 -82.5 L-137.4 -91.3 L-160.6 -119.2 L-141.4 -141.4 L-110.4 -122.6 L-82.5 -142.9 L-73.4 -147.8 L-79.4 -183.6 L-51.8 -193.2 L-34.3 -161.4 L-0.0 -165.0 L10.4 -164.7 L23.0 -198.7 L51.8 -193.2 L51.0 -156.9 L82.5 -142.9 L91.3 -137.4 L119.2 -160.6 L141.4 -141.4 L122.6 -110.4 L142.9 -82.5 L147.8 -73.4 L183.6 -79.4 L193.2 -51.8 L161.4 -34.3 Z";
@@ -50,9 +52,7 @@ export function FundoRolagem() {
     enquadrar();
     window.addEventListener("resize", enquadrar);
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return () => window.removeEventListener("resize", enquadrar);
-    }
+    const reduzirMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let desfazer = () => {};
     let cancelado = false;
@@ -63,11 +63,14 @@ export function FundoRolagem() {
         if (cancelado) return;
         gsap.registerPlugin(ScrollTrigger);
 
-        const lenis = new Lenis({ lerp: 0.1 });
-        lenis.on("scroll", ScrollTrigger.update);
-        const tique = (tempo: number) => lenis.raf(tempo * 1000);
-        gsap.ticker.add(tique);
-        gsap.ticker.lagSmoothing(0);
+        // Rolagem suave só para quem não pediu para reduzir movimento
+        const lenis = reduzirMovimento ? null : new Lenis({ lerp: 0.1 });
+        const tique = (tempo: number) => lenis?.raf(tempo * 1000);
+        if (lenis) {
+          lenis.on("scroll", ScrollTrigger.update);
+          gsap.ticker.add(tique);
+          gsap.ticker.lagSmoothing(0);
+        }
 
         const ctx = gsap.context(() => {
           // Os gatilhos são as seções da página (fora do SVG), por isso a busca é no documento
@@ -109,8 +112,10 @@ export function FundoRolagem() {
 
         desfazer = () => {
           ctx.revert();
-          gsap.ticker.remove(tique);
-          lenis.destroy();
+          if (lenis) {
+            gsap.ticker.remove(tique);
+            lenis.destroy();
+          }
         };
       },
     );
