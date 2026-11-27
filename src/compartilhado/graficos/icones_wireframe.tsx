@@ -102,7 +102,6 @@ function buildBrain(): Mesh {
   const segs = 20;
 
   const addLobe = (ox: number) => {
-    const start = pts.length;
     const idx: number[][] = [];
 
     for (let i = 0; i <= rings; i++) {
@@ -346,6 +345,9 @@ export function WireframeIcon3D({ forma, width = 500, height = 500, className = 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>();
   const angleRef = useRef({ y: 0, x: 0.15 });
+  // Guarda a rolagem atual sem reiniciar a animação a cada scroll
+  const scrollRef = useRef(scrollProgress);
+  scrollRef.current = scrollProgress;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -373,7 +375,7 @@ export function WireframeIcon3D({ forma, width = 500, height = 500, className = 
       angleRef.current.y += 0.006;
       
       // Efeito Parallax: O scroll altera a inclinação X e adiciona uma rotação Y extra
-      const targetX = 0.15 + (scrollProgress * 1.5);
+      const targetX = 0.15 + (scrollRef.current * 1.5);
       const currentX = angleRef.current.x;
       // Suavização da transição do ângulo X
       angleRef.current.x = currentX + (targetX - currentX) * 0.1;
@@ -381,7 +383,7 @@ export function WireframeIcon3D({ forma, width = 500, height = 500, className = 
       const transformed = pts.map(p => {
         const q = rotX(p, angleRef.current.x);
         // Adiciona um pouco de rotação Y baseada no scroll para dinamismo
-        const r = rotY(q, angleRef.current.y + (scrollProgress * 2));
+        const r = rotY(q, angleRef.current.y + (scrollRef.current * 2));
         return project(r, cx, cy, scale);
       });
 

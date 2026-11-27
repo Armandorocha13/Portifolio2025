@@ -13,7 +13,7 @@ export const VectorBackground: React.FC = () => {
     let width = window.innerWidth;
     let height = window.innerHeight;
     let particles: Particle[] = [];
-    let symbols: Symbol[] = [];
+    let symbols: SimboloMatematico[] = [];
     const particleCount = 60;
     const connectionDist = 150;
     const mathSymbols = ['Σ', 'π', '∫', '√', 'λ', '∞', '∆', 'θ', 'f(x)', 'lim', 'log'];
@@ -52,7 +52,7 @@ export const VectorBackground: React.FC = () => {
       }
     }
 
-    class Symbol {
+    class SimboloMatematico {
       x = 0;
       y = 0;
       text = "";
@@ -93,7 +93,7 @@ export const VectorBackground: React.FC = () => {
       canvas.width = width;
       canvas.height = height;
       particles = Array.from({ length: particleCount }, () => new Particle());
-      symbols = Array.from({ length: 15 }, () => new Symbol());
+      symbols = Array.from({ length: 15 }, () => new SimboloMatematico());
     };
 
     const drawConnections = () => {

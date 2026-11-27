@@ -13,5 +13,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Pré-renderização: um arquivo .html por rota (servicos.html, servicos/sites.html...)
+  ssgOptions: {
+    dirStyle: 'flat',
+    entry: 'src/principal.tsx',
+  },
 })
-
