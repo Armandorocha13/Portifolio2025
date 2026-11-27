@@ -156,10 +156,21 @@ const PaginaInicio = () => {
       </section>
 
       {/* Fechamento: convite para conversar */}
-      <section id="chamada" className="px-6 pb-24 pt-20 md:px-12 lg:px-24">
+      <section id="chamada" className="overflow-hidden px-6 pb-16 pt-20 md:px-12 lg:px-24">
         <div className="container-narrow">
           <TituloSecao rotulo="Vamos conversar" titulo="Qual tarefa da sua empresa deveria rodar sozinha?" />
           <BotoesContato />
+        </div>
+
+        {/* Assinatura: o "O" entra rolando, bate no "R" e as letras quicam (movimento em movimento_home.tsx) */}
+        <div data-quique role="img" aria-label="AERO" className="quique-palco">
+          {["A", "E", "R", "O"].map((letra) => (
+            <span key={letra} className={`qq-item qq-${letra.toLowerCase()}`} aria-hidden="true">
+              <span className="qq-sombra" />
+              <span className="qq-g">{letra}</span>
+            </span>
+          ))}
+          <span className="qq-chao" aria-hidden="true" />
         </div>
       </section>
     </>
