@@ -98,31 +98,34 @@ export function MovimentoHome() {
             const caixaO = palco.querySelector<HTMLElement>(".qq-o"); // amassa a caixa; o giro fica na letra
             const em = () => parseFloat(getComputedStyle(palco).fontSize);
             // Distância até sair pela direita da tela e o giro que corresponde a ela (rolar sem deslizar)
-            const distancia = () => (o ? window.innerWidth - o.getBoundingClientRect().left + 40 : 0);
+            const distancia = () => {
+              if (!o) return 0;
+              // Posição natural da letra (sem o deslocamento que o GSAP já aplicou)
+              const esquerda = o.getBoundingClientRect().left - Number(gsap.getProperty(o, "x"));
+              return window.innerWidth - esquerda + 40;
+            };
             const giro = () => {
               const raio = (o?.offsetWidth ?? 1) / 2;
               return Math.round(((distancia() / raio) * (180 / Math.PI)) / 360) * 360;
             };
 
-            gsap.fromTo(
-              [o, sombra("o")],
-              { x: () => distancia() },
-              {
-                x: 0,
-                ease: "none",
-                scrollTrigger: { trigger: palco, start: "top bottom", end: "bottom 75%", scrub: true, invalidateOnRefresh: true },
+            // A assinatura fica presa no centro da tela; enquanto isso o "O" chega rolando de fora
+            const rolagem = gsap.timeline({
+              scrollTrigger: {
+                trigger: palco,
+                start: "center center",
+                end: "+=90%",
+                pin: true,
+                scrub: true,
+                invalidateOnRefresh: true,
+                // Impacto no fim do trecho preso; voltar a rolagem desfaz o quique
+                onLeave: () => quique.restart(),
+                onEnterBack: () => quique.pause(0),
               },
-            );
-            gsap.fromTo(
-              o,
-              { rotation: () => giro() },
-              {
-                rotation: 0,
-                ease: "none",
-                immediateRender: false,
-                scrollTrigger: { trigger: palco, start: "top bottom", end: "bottom 75%", scrub: true, invalidateOnRefresh: true },
-              },
-            );
+            });
+            rolagem
+              .fromTo([o, sombra("o")], { x: () => distancia() }, { x: 0, ease: "none" }, 0)
+              .fromTo(o, { rotation: () => giro() }, { rotation: 0, ease: "none" }, 0);
 
             const pulo = (letra: string, altura: number, inclinacao: number, atraso: number) => {
               const t = gsap.timeline();
@@ -144,12 +147,6 @@ export function MovimentoHome() {
               .add(pulo("e", 0.12, -5, 0.1), 0)
               .add(pulo("a", 0.07, -3, 0.18), 0);
 
-            ScrollTrigger.create({
-              trigger: palco,
-              start: "bottom 75%",
-              onEnter: () => quique.restart(),
-              onLeaveBack: () => quique.pause(0),
-            });
           }
         });
 
