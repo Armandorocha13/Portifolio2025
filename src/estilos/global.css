@@ -336,3 +336,55 @@ div[style*="position: absolute"][style*="bottom"][style*="right"] {
   width: 0 !important;
   overflow: hidden !important;
 }
+
+/* ===== Linguagem editorial da home (inspirada nos templates do Lenis) ===== */
+.titulo-hero {
+  font-size: clamp(52px, 10.5vw, 170px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+}
+
+.titulo-editorial {
+  font-size: clamp(36px, 5.4vw, 84px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+/* Revelação palavra por palavra: só esconde quando há JS para mostrar */
+.rv .rv-palavra {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+.rv .rv-in {
+  display: inline-block;
+}
+.js .rv .rv-in {
+  transform: translateY(110%);
+  transition: transform 0.95s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.js .rv.rv-visivel .rv-in {
+  transform: none;
+}
+
+/* Texto vazado (faixa de baixo) */
+.texto-contorno {
+  color: transparent;
+  -webkit-text-stroke: 1px hsl(var(--foreground) / 0.7);
+}
+
+/* Lenis: a rolagem suave substitui o scroll-behavior do navegador */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}

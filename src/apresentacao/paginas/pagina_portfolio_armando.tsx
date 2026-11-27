@@ -7,6 +7,7 @@ import { HeroSection } from "@/apresentacao/componentes/secoes/secao_inicio";
 import { ProjectsSection } from "@/apresentacao/componentes/secoes/secao_projetos";
 import { SkillsSection } from "@/apresentacao/componentes/secoes/secao_habilidades";
 import { Seo } from "@/apresentacao/componentes/seo";
+import { VectorBackground } from "@/compartilhado/efeitos/fundo_vetorial";
 import { exportar_curriculo_pdf } from "@/compartilhado/curriculo/exportar_curriculo_pdf";
 
 const LINKS_PORTFOLIO = [
@@ -33,6 +34,7 @@ const LINKS_PORTFOLIO = [
 const PortfolioArmandoPage = () => {
   return (
     <main className="min-h-screen bg-transparent">
+      <VectorBackground />
       <Seo
         titulo="Armando Rocha | Analista de Dados & Engenharia de Dados"
         descricao="Analista de Dados com atuação em Engenharia de Dados: pipelines de ETL em Python e n8n, SQL, modelagem Star Schema e Power BI."
