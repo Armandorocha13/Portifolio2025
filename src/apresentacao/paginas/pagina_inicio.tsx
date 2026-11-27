@@ -66,19 +66,23 @@ const PaginaInicio = () => {
         </div>
       </section>
 
-      {/* Manifesto: palavras acendem uma a uma */}
-      <section data-manifesto className="flex min-h-[100svh] items-center px-6 md:px-12 lg:px-24">
-        <div className="mx-auto max-w-6xl">
-          <span className="mono mb-8 block">Por que a AERO existe</span>
-          <p className="text-[clamp(28px,4.6vw,68px)] font-semibold leading-[1.12] tracking-tight">
-            {MANIFESTO.split(" ").map((palavra, i) => (
-              <span key={i} className="mf-palavra">
-                {palavra}{" "}
-              </span>
-            ))}
-          </p>
-        </div>
-      </section>
+      {/* Manifesto: palavras acendem uma a uma.
+          A div de fora é do React; o GSAP prende (pin) a seção de dentro. Assim, trocar
+          de página nunca tenta remover um nó que o GSAP moveu para o pin-spacer. */}
+      <div>
+        <section data-manifesto className="flex min-h-[100svh] items-center px-6 md:px-12 lg:px-24">
+          <div className="mx-auto max-w-6xl">
+            <span className="mono mb-8 block">Por que a AERO existe</span>
+            <p className="text-[clamp(28px,4.6vw,68px)] font-semibold leading-[1.12] tracking-tight">
+              {MANIFESTO.split(" ").map((palavra, i) => (
+                <span key={i} className="mf-palavra">
+                  {palavra}{" "}
+                </span>
+              ))}
+            </p>
+          </div>
+        </section>
+      </div>
 
       {/* Serviços em cartões que se empilham */}
       <section id="servicos" className="section-padding">
@@ -114,26 +118,28 @@ const PaginaInicio = () => {
         </div>
       </section>
 
-      {/* Processo na horizontal */}
-      <section id="processo" data-horizontal className="overflow-hidden py-20 md:py-0">
-        <div className="flex min-h-[100svh] flex-col justify-center gap-12 px-6 md:px-12 lg:px-24">
-          <TituloSecao rotulo="Como trabalhamos" titulo="Do diagnóstico ao suporte, sem surpresa" />
-          <ol className="hz-trilho flex flex-col gap-6 min-[900px]:w-max min-[900px]:flex-row">
-            {PROCESSO.map((etapa, i) => (
-              <li
-                key={etapa.nome}
-                className="flex min-h-[300px] flex-col justify-between rounded-3xl border border-border p-8 min-[900px]:w-[38vw] md:p-10"
-              >
-                <span className="text-[clamp(64px,9vw,140px)] font-black leading-none tracking-tighter text-foreground/15">0{i + 1}</span>
-                <div>
-                  <h3 className="mb-3 text-3xl font-bold tracking-tight md:text-4xl">{etapa.nome}</h3>
-                  <p className="body-lg">{etapa.texto}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      {/* Processo na horizontal (mesmo cuidado do manifesto: div do React por fora) */}
+      <div>
+        <section id="processo" data-horizontal className="overflow-hidden py-20 md:py-0">
+          <div className="flex min-h-[100svh] flex-col justify-center gap-12 px-6 md:px-12 lg:px-24">
+            <TituloSecao rotulo="Como trabalhamos" titulo="Do diagnóstico ao suporte, sem surpresa" />
+            <ol className="hz-trilho flex flex-col gap-6 min-[900px]:w-max min-[900px]:flex-row">
+              {PROCESSO.map((etapa, i) => (
+                <li
+                  key={etapa.nome}
+                  className="flex min-h-[300px] flex-col justify-between rounded-3xl border border-border p-8 min-[900px]:w-[38vw] md:p-10"
+                >
+                  <span className="text-[clamp(64px,9vw,140px)] font-black leading-none tracking-tighter text-foreground/15">0{i + 1}</span>
+                  <div>
+                    <h3 className="mb-3 text-3xl font-bold tracking-tight md:text-4xl">{etapa.nome}</h3>
+                    <p className="body-lg">{etapa.texto}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      </div>
 
       <section id="cases" className="section-padding">
         <div className="container-narrow">
