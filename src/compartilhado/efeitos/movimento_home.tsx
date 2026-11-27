@@ -8,7 +8,6 @@ import { useEffect } from "react";
  *  - [data-faixa]       faixas de texto andam em sentidos opostos conforme a rolagem
  *  - [data-pilha]       cartões de serviço se empilham; o de baixo recua
  *  - [data-horizontal]  processo rola na horizontal (só em telas largas)
- *  - [data-marca]       assinatura AERO cresce no fim da página
  * GSAP, ScrollTrigger e Lenis carregam sob demanda, só nesta página.
  * Com "reduzir movimento" ativo, apenas a rolagem suave é desligada.
  */
@@ -88,16 +87,6 @@ export function MovimentoHome() {
               },
             );
           });
-
-          // Marca: AERO gigante cresce ao chegar no fim
-          const marca = document.querySelector("[data-marca]");
-          if (marca) {
-            gsap.fromTo(
-              "[data-marca] .marca-texto",
-              { yPercent: 40, scale: 0.8, opacity: 0.2 },
-              { yPercent: 0, scale: 1, opacity: 1, ease: "none", scrollTrigger: { trigger: marca, start: "top bottom", end: "bottom bottom", scrub: true } },
-            );
-          }
         });
 
         // Processo na horizontal só em telas largas; no celular fica em coluna

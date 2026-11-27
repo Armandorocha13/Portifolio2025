@@ -155,16 +155,11 @@ const PaginaInicio = () => {
         </div>
       </section>
 
-      {/* Fechamento com a assinatura gigante */}
-      <section id="chamada" className="px-6 pt-20 md:px-12 lg:px-24">
+      {/* Fechamento: convite para conversar */}
+      <section id="chamada" className="px-6 pb-24 pt-20 md:px-12 lg:px-24">
         <div className="container-narrow">
           <TituloSecao rotulo="Vamos conversar" titulo="Qual tarefa da sua empresa deveria rodar sozinha?" />
           <BotoesContato />
-        </div>
-        <div data-marca aria-hidden="true" className="mt-20 overflow-hidden">
-          <div className="marca-texto origin-bottom select-none text-center text-[27vw] font-black leading-[0.8] tracking-[-0.04em]">
-            AERO
-          </div>
         </div>
       </section>
     </>
