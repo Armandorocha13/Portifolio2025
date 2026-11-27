@@ -31,6 +31,7 @@ export function MovimentoHome() {
           gsap.ticker.lagSmoothing(0);
         }
 
+        let removerFolga = () => {};
         const mm = gsap.matchMedia();
         const ctx = gsap.context(() => {
           // Hero: o texto fica para trás enquanto a página sobe
@@ -109,6 +110,23 @@ export function MovimentoHome() {
               return Math.round(((distancia() / raio) * (180 / Math.PI)) / 360) * 360;
             };
 
+            // A página termina junto com a animação: o espaço depois do AERO (seção + rodapé) tem que
+            // ser meia tela menos meia palavra, assim no fim da rolagem a palavra fica no centro.
+            // A folga completa o que faltar; os 2px garantem que a rolagem passe do fim e dispare o quique.
+            const folga = document.querySelector<HTMLElement>(".quique-folga");
+            const ajustarFolga = () => {
+              if (!folga) return;
+              const pai = palco.parentElement;
+              const caixa = pai?.classList.contains("pin-spacer") ? pai : palco;
+              const fimDaCaixa = caixa.getBoundingClientRect().bottom + window.scrollY;
+              const depois = document.documentElement.scrollHeight - fimDaCaixa - folga.offsetHeight;
+              const falta = window.innerHeight / 2 - palco.offsetHeight / 2 - depois + 2;
+              folga.style.height = `${Math.max(0, Math.round(falta))}px`;
+            };
+            ajustarFolga();
+            ScrollTrigger.addEventListener("refreshInit", ajustarFolga);
+            removerFolga = () => ScrollTrigger.removeEventListener("refreshInit", ajustarFolga);
+
             // A assinatura fica presa no centro da tela; enquanto isso o "O" chega rolando de fora
             const rolagem = gsap.timeline({
               scrollTrigger: {
@@ -175,6 +193,7 @@ export function MovimentoHome() {
         document.fonts?.ready.then(() => ScrollTrigger.refresh());
 
         desfazer = () => {
+          removerFolga();
           mm.revert();
           ctx.revert();
           if (lenis) {

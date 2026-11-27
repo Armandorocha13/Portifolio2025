@@ -402,13 +402,15 @@ html.lenis body {
   padding-bottom: 0.08em;
   font-family: "Inter", sans-serif;
   font-weight: 900;
-  font-size: 26vw;
+  /* Limitada pela altura também: a palavra precisa caber no centro da tela com o rodapé abaixo */
+  font-size: min(26vw, 40svh);
+  line-height: 0.74;
   letter-spacing: -0.02em;
   user-select: none;
 }
 @media (min-width: 768px) {
   .quique-palco {
-    font-size: 23vw;
+    font-size: min(23vw, 40svh);
   }
 }
 .qq-item {

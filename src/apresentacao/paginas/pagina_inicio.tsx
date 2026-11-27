@@ -156,7 +156,7 @@ const PaginaInicio = () => {
       </section>
 
       {/* Fechamento: convite para conversar */}
-      <section id="chamada" className="overflow-hidden px-6 pb-16 pt-20 md:px-12 lg:px-24">
+      <section id="chamada" className="overflow-hidden px-6 pt-20 md:px-12 lg:px-24">
         <div className="container-narrow">
           <TituloSecao rotulo="Vamos conversar" titulo="Qual tarefa da sua empresa deveria rodar sozinha?" />
           <BotoesContato />
@@ -172,6 +172,8 @@ const PaginaInicio = () => {
           ))}
           <span className="qq-chao" aria-hidden="true" />
         </div>
+        {/* Espaço calculado em movimento_home.tsx para a página terminar com o AERO no centro */}
+        <div className="quique-folga" aria-hidden="true" />
       </section>
     </>
   );
