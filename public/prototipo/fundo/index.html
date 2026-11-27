@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Fundo AERO — composição HyperFrames guiada pela rolagem</title>
+    <script src="gsap.min.js"></script>
+    <script>
+      // Modo "leve" (?leve): só GSAP, sem o runtime do HyperFrames (comparação de desempenho)
+      if (!location.search.includes("leve")) document.write('<script src="hyperframe.runtime.iife.js"><\/script>');
+      window.__timelines = window.__timelines || {};
+    </script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+      .camada { position: absolute; inset: 0; }
+      svg { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      .grade-fundo { background-image: linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px); background-size: 80px 80px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="12" data-width="1920" data-height="1080">
+      <div id="grade" class="camada grade-fundo clip" data-start="0" data-duration="12"></div>
+
+      <!-- Cena 1 (0–4 s): engrenagem em wireframe se desenha e gira -->
+      <svg id="cena-engrenagem" class="clip" data-start="0" data-duration="12" viewBox="0 0 1920 1080">
+        <g id="engrenagem" transform="translate(1350 540)">
+          <g id="engrenagem-giro">
+            <path id="eng-dentes" d="M165.0 0.0 L164.7 10.4 L198.7 23.0 L193.2 51.8 L156.9 51.0 L142.9 82.5 L137.4 91.3 L160.6 119.2 L141.4 141.4 L110.4 122.6 L82.5 142.9 L73.4 147.8 L79.4 183.6 L51.8 193.2 L34.3 161.4 L0.0 165.0 L-10.4 164.7 L-23.0 198.7 L-51.8 193.2 L-51.0 156.9 L-82.5 142.9 L-91.3 137.4 L-119.2 160.6 L-141.4 141.4 L-122.6 110.4 L-142.9 82.5 L-147.8 73.4 L-183.6 79.4 L-193.2 51.8 L-161.4 34.3 L-165.0 0.0 L-164.7 -10.4 L-198.7 -23.0 L-193.2 -51.8 L-156.9 -51.0 L-142.9 -82.5 L-137.4 -91.3 L-160.6 -119.2 L-141.4 -141.4 L-110.4 -122.6 L-82.5 -142.9 L-73.4 -147.8 L-79.4 -183.6 L-51.8 -193.2 L-34.3 -161.4 L-0.0 -165.0 L10.4 -164.7 L23.0 -198.7 L51.8 -193.2 L51.0 -156.9 L82.5 -142.9 L91.3 -137.4 L119.2 -160.6 L141.4 -141.4 L122.6 -110.4 L142.9 -82.5 L147.8 -73.4 L183.6 -79.4 L193.2 -51.8 L161.4 -34.3 Z" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+            <circle id="eng-anel" r="110" fill="none" stroke="#fff" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+            <circle id="eng-eixo" r="38" fill="none" stroke="#fff" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+            <g id="eng-raios" stroke="#fff" stroke-width="1.5" opacity="0">
+              <line x1="0" y1="-38" x2="0" y2="-110" /><line x1="0" y1="38" x2="0" y2="110" />
+              <line x1="-38" y1="0" x2="-110" y2="0" /><line x1="38" y1="0" x2="110" y2="0" />
+            </g>
+          </g>
+          <circle id="eng-orbita" r="290" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1" stroke-dasharray="4 10" />
+        </g>
+      </svg>
+
+      <!-- Cena 2 (4–8 s): pontos espalhados se organizam numa grade (bagunça vira ordem) -->
+      <svg id="cena-pontos" class="clip" data-start="0" data-duration="12" viewBox="0 0 1920 1080"><g id="pontos"></g></svg>
+
+      <!-- Cena 3 (8–12 s): linha de fluxo atravessa a tela e acende as etapas; AERO no fim -->
+      <svg id="cena-fluxo" class="clip" data-start="0" data-duration="12" viewBox="0 0 1920 1080">
+        <path id="fluxo-linha" d="M1150 860 C 1150 740, 1550 740, 1550 620 S 1150 500, 1150 400 S 1550 300, 1550 220" fill="none" stroke="#fff" stroke-width="3" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
+        <circle id="no-1" cx="1150" cy="860" r="16" fill="#000" stroke="#fff" stroke-width="3" opacity="0" />
+        <circle id="no-2" cx="1550" cy="620" r="16" fill="#000" stroke="#fff" stroke-width="3" opacity="0" />
+        <circle id="no-3" cx="1150" cy="400" r="16" fill="#000" stroke="#fff" stroke-width="3" opacity="0" />
+        <circle id="no-4" cx="1550" cy="220" r="16" fill="#000" stroke="#fff" stroke-width="3" opacity="0" />
+        <text id="aero" x="1350" y="590" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-weight="900" font-size="150" letter-spacing="16" fill="none" stroke="#fff" stroke-width="2" opacity="0">AERO</text>
+      </svg>
+    </div>
+
+    <script>
+      // Pontos com posição pseudoaleatória fixa (semente): a mesma imagem em todo quadro
+      let semente = 7;
+      const aleatorio = () => ((semente = (semente * 16807) % 2147483647) - 1) / 2147483646;
+      const svgns = "http://www.w3.org/2000/svg";
+      const grupo = document.getElementById("pontos");
+      const colunas = 9, linhas = 8;
+      const pontos = [];
+      for (let i = 0; i < colunas * linhas; i++) {
+        const c = document.createElementNS(svgns, "circle");
+        c.setAttribute("r", "5");
+        c.setAttribute("fill", "#fff");
+        c.setAttribute("cx", "0");
+        c.setAttribute("cy", "0");
+        grupo.appendChild(c);
+        pontos.push({
+          el: c,
+          x0: 1000 + aleatorio() * 700, y0: 120 + aleatorio() * 840,
+          x1: 1110 + (i % colunas) * 60, y1: 330 + Math.floor(i / colunas) * 60,
+        });
+      }
+
+      const tl = gsap.timeline({ paused: true });
+
+      // Tempos alinhados às seções: a cena "chega" no meio de cada seção (t = 0, 4, 8 e 12 s)
+      // Cena 1: engrenagem
+      tl.fromTo("#eng-dentes", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.4, ease: "power2.inOut" }, 0);
+      tl.fromTo("#eng-anel", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" }, 0.2);
+      tl.fromTo("#eng-eixo", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 0.4);
+      tl.fromTo("#eng-raios", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 1.0);
+      tl.fromTo("#engrenagem-giro", { rotation: 0, svgOrigin: "0 0" }, { rotation: 240, duration: 3.0, ease: "none" }, 0);
+      tl.fromTo("#eng-orbita", { rotation: 0, svgOrigin: "0 0", opacity: 0 }, { rotation: -90, opacity: 1, duration: 3.0, ease: "none" }, 0);
+      tl.to("#engrenagem", { y: -220, scale: 0.55, opacity: 0, duration: 0.8, ease: "power2.in" }, 2.2);
+
+      // Cena 2: pontos espalhados se alinham na grade (pronta em t = 4)
+      pontos.forEach((p, i) => {
+        tl.fromTo(p.el, { attr: { cx: p.x0, cy: p.y0 }, opacity: 0 }, { opacity: 0.85, duration: 0.4 }, 2.2 + (i % 9) * 0.03);
+        tl.to(p.el, { attr: { cx: p.x1, cy: p.y1 }, duration: 1.3, ease: "power3.inOut" }, 2.6 + (i % colunas) * 0.012);
+      });
+      tl.to("#pontos", { opacity: 0, y: -60, duration: 0.8, ease: "power2.in" }, 5.2);
+
+      // Cena 3: a linha de fluxo sobe e acende as 4 etapas (completa em t = 8)
+      tl.fromTo("#fluxo-linha", { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 2.4, ease: "none" }, 5.6);
+      ["#no-1", "#no-2", "#no-3", "#no-4"].forEach((id, i) => {
+        tl.fromTo(id, { opacity: 0, scale: 0.4, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, 5.6 + i * 0.8);
+        tl.to(id, { attr: { fill: "#fff" }, duration: 0.2 }, 5.8 + i * 0.8);
+      });
+
+      // Cena 4: a assinatura AERO (completa em t = 12)
+      tl.to(["#fluxo-linha", "#no-1", "#no-2", "#no-3", "#no-4"], { opacity: 0, duration: 0.6 }, 9.6);
+      tl.fromTo("#aero", { opacity: 0, scale: 1.12, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 10.0);
+      tl.to("#aero", { attr: { fill: "#fff" }, duration: 0.6 }, 11.0);
+      tl.to("#grade", { opacity: 0.4, duration: 12, ease: "none" }, 0);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Protótipo — fundo HyperFrames guiado pela rolagem | AERO</title>
+    <link rel="stylesheet" href="vendor/lenis.css" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { background: #000; color: #fff; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+
+      /* Fundo fixo em modo "cover": preenche a tela em qualquer proporção */
+      .fundo {
+        position: fixed; top: 50%; left: 50%; z-index: 0;
+        width: max(100vw, 177.78vh); height: max(100vh, 56.25vw);
+        transform: translate(-50%, -50%);
+        pointer-events: none; border: 0; opacity: 0.9;
+      }
+      .veu { position: fixed; inset: 0; z-index: 1; pointer-events: none;
+        background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0) 75%); }
+
+      main { position: relative; z-index: 2; }
+      section { min-height: 100vh; display: flex; align-items: center; padding: 0 8vw; }
+      .bloco { max-width: 560px; }
+      .rotulo { font-family: ui-monospace, "JetBrains Mono", monospace; font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: #9a9a9a; }
+      h1, h2 { font-weight: 900; letter-spacing: -0.03em; line-height: 1.02; margin: 14px 0 18px; }
+      h1 { font-size: clamp(44px, 7vw, 96px); }
+      h2 { font-size: clamp(34px, 5vw, 64px); }
+      p { font-size: clamp(16px, 1.4vw, 19px); line-height: 1.55; color: #cfcfcf; }
+      .cta { display: inline-block; margin-top: 28px; padding: 16px 28px; border-radius: 999px; background: #fff; color: #000; font-weight: 800; text-decoration: none; }
+
+      header { position: fixed; top: 0; left: 0; right: 0; z-index: 3; display: flex; justify-content: space-between; align-items: center; padding: 22px 8vw; }
+      .marca { font-weight: 900; letter-spacing: 6px; font-size: 20px; }
+
+      /* Medidor do protótipo: FPS e modo atual */
+      #medidor { position: fixed; right: 12px; bottom: 12px; z-index: 4; font: 12px ui-monospace, monospace; background: rgba(20,20,20,0.9); border: 1px solid #333; border-radius: 8px; padding: 8px 10px; line-height: 1.5; }
+      #medidor a { color: #fff; }
+      #barra { position: fixed; left: 0; top: 0; height: 3px; background: #fff; z-index: 5; width: 0; }
+
+      @media (max-width: 760px) {
+        /* No celular, centraliza a faixa direita da composição (x = 1350 de 1920) */
+        .fundo { transform: translate(-70.31%, -50%); opacity: 0.6; }
+        .veu { background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.9) 100%); }
+        section { align-items: flex-end; padding-bottom: 14vh; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="barra"></div>
+    <header><span class="marca">AERO</span><span class="rotulo">protótipo</span></header>
+
+    <!-- O elemento do fundo é criado pelo script conforme o modo (player HyperFrames ou só GSAP) -->
+    <div class="veu" aria-hidden="true"></div>
+
+    <main>
+      <section>
+        <div class="bloco">
+          <span class="rotulo">Automação e software sob medida</span>
+          <h1>Seu processo rodando sozinho.</h1>
+          <p>A AERO cria sites e automações que tiram as tarefas repetitivas da sua equipe. Role a página: o fundo acompanha você.</p>
+          <a class="cta" href="#contato">Pedir orçamento</a>
+        </div>
+      </section>
+      <section>
+        <div class="bloco">
+          <span class="rotulo">Serviços</span>
+          <h2>Da bagunça à ordem.</h2>
+          <p>Planilhas soltas, cópia e cola, relatórios na mão. A gente organiza os dados e conecta seus sistemas para que tudo tenha lugar certo.</p>
+        </div>
+      </section>
+      <section>
+        <div class="bloco">
+          <span class="rotulo">Processo</span>
+          <h2>Dados entram. Relatório sai.</h2>
+          <p>Coleta, conferência e entrega automáticas, todos os dias, no horário. Você só lê o resultado.</p>
+        </div>
+      </section>
+      <section id="contato">
+        <div class="bloco">
+          <span class="rotulo">Contato</span>
+          <h2>Vamos automatizar o seu?</h2>
+          <p>Conte o que toma tempo da sua equipe. Respondemos em até 1 dia útil.</p>
+          <a class="cta" href="https://instagram.com/aero.code">Falar no Instagram</a>
+        </div>
+      </section>
+    </main>
+
+    <div id="medidor" aria-hidden="true">carregando…</div>
+
+    <script src="vendor/lenis.min.js"></script>
+    <script>
+      const modoLeve = new URLSearchParams(location.search).has("leve");
+      const reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const medidor = document.getElementById("medidor");
+      const barra = document.getElementById("barra");
+      let duracao = 12;
+      let irParaTempo = () => {};
+
+      // Modo 1 (padrão): player oficial do HyperFrames. Modo 2 (?leve): iframe simples + timeline GSAP direto.
+      if (modoLeve) {
+        const iframe = document.createElement("iframe");
+        iframe.className = "fundo";
+        iframe.src = "fundo/index.html?leve";
+        iframe.setAttribute("aria-hidden", "true");
+        iframe.tabIndex = -1;
+        document.body.prepend(iframe);
+        iframe.addEventListener("load", () => {
+          const tl = iframe.contentWindow.__timelines.main;
+          duracao = tl.duration();
+          // Encaixa o palco de 1920x1080 no tamanho do iframe
+          const ajustar = () => {
+            const doc = iframe.contentDocument.documentElement;
+            const escala = iframe.clientWidth / 1920;
+            doc.style.transformOrigin = "0 0";
+            doc.style.transform = `scale(${escala})`;
+          };
+          ajustar(); addEventListener("resize", ajustar);
+          irParaTempo = (t) => tl.seek(t, false);
+          pronto();
+        });
+      } else {
+        const script = document.createElement("script");
+        script.src = "vendor/hyperframes-player.global.js";
+        script.onload = () => {
+          const player = document.createElement("hyperframes-player");
+          player.className = "fundo";
+          player.setAttribute("src", "fundo/index.html");
+          player.setAttribute("muted", "");
+          player.setAttribute("disable-click-to-play", "");
+          player.setAttribute("disable-fullscreen", "");
+          player.setAttribute("assets-loading-ui", "none");
+          player.setAttribute("aria-hidden", "true");
+          document.body.prepend(player);
+          player.addEventListener("ready", () => {
+            duracao = player.duration || 12;
+            irParaTempo = (t) => player.seek(t);
+            pronto();
+          });
+          player.addEventListener("error", (e) => { medidor.textContent = "erro no player: " + (e.detail?.message || "?"); });
+        };
+        document.head.appendChild(script);
+      }
+
+      // Rolagem suave (Lenis) → progresso 0..1 → tempo da animação
+      const lenis = new Lenis({ lerp: 0.09 });
+      let alvo = 0, ultimoTempo = -1;
+      lenis.on("scroll", ({ progress }) => { alvo = progress || 0; barra.style.width = (alvo * 100).toFixed(2) + "%"; });
+
+      let quadros = 0, inicio = performance.now(), fps = 0, custoSeek = 0;
+      function quadro(agora) {
+        lenis.raf(agora);
+        const t = reduzido ? 2.6 : alvo * duracao;
+        if (Math.abs(t - ultimoTempo) > 0.004) {
+          const a = performance.now();
+          irParaTempo(t);
+          custoSeek = custoSeek * 0.9 + (performance.now() - a) * 0.1;
+          ultimoTempo = t;
+        }
+        quadros++;
+        if (agora - inicio > 1000) { fps = Math.round((quadros * 1000) / (agora - inicio)); quadros = 0; inicio = agora; atualizarMedidor(); }
+        requestAnimationFrame(quadro);
+      }
+      function atualizarMedidor() {
+        const outro = modoLeve ? `<a href="?">usar player HyperFrames</a>` : `<a href="?leve">usar só GSAP</a>`;
+        medidor.innerHTML = `${modoLeve ? "modo: só GSAP" : "modo: player HyperFrames"}<br>${fps} fps · seek ${custoSeek.toFixed(1)} ms · t=${ultimoTempo.toFixed(2)}s<br>${outro}`;
+      }
+      function pronto() { ultimoTempo = -1; atualizarMedidor(); }
+      requestAnimationFrame(quadro);
+    </script>
+  </body>
+</html>
