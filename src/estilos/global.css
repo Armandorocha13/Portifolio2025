@@ -388,3 +388,58 @@ html.lenis body {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
+
+/* ===== Assinatura AERO que quica (fim da home) =====
+   Fonte Inter 900 com métricas conhecidas: line-height 0.74em faz a caixa de cada
+   letra coincidir com a altura das maiúsculas, então todas pisam na mesma linha de chão. */
+.quique-palco {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.02em;
+  margin-top: 5rem;
+  padding-bottom: 0.08em;
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  /* Limitada pela altura também: a palavra precisa caber no centro da tela com o rodapé abaixo */
+  font-size: min(26vw, 40svh);
+  line-height: 0.74;
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+@media (min-width: 768px) {
+  .quique-palco {
+    font-size: min(23vw, 40svh);
+  }
+}
+.qq-item {
+  position: relative;
+  display: inline-block;
+}
+.qq-g {
+  display: inline-block;
+  line-height: 0.74;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+.qq-o .qq-g {
+  transform-origin: 50% 50%;
+}
+.qq-sombra {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -0.05em;
+  height: 0.05em;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, hsl(var(--foreground) / 0.35), transparent 70%);
+}
+.qq-chao {
+  position: absolute;
+  left: -50vw;
+  right: -50vw;
+  bottom: 0.03em;
+  height: 1px;
+  background: hsl(var(--border));
+}
