@@ -9,21 +9,16 @@ import {
   ListaProcesso,
 } from "@/apresentacao/componentes/aero/blocos";
 import { Seo } from "@/apresentacao/componentes/seo";
-import { WireframeIcon3D } from "@/compartilhado/graficos/icones_wireframe";
+import { FundoRolagem } from "@/compartilhado/efeitos/fundo_rolagem";
 import { buttonVariants } from "@/compartilhado/interface/botao";
 import { SITE } from "@/conteudo/site";
 
 const PaginaInicio = () => (
   <>
     <Seo titulo={`${SITE.nome} | ${SITE.promessa}`} descricao={SITE.descricao} caminho="/" />
+    <FundoRolagem />
 
-    <section className="relative flex min-h-[92vh] items-center overflow-hidden px-6 md:px-12 lg:px-24">
-      <div
-        className="pointer-events-none absolute right-[-6%] top-1/2 hidden -translate-y-1/2 opacity-40 md:block"
-        aria-hidden="true"
-      >
-        <WireframeIcon3D forma="gear" width={620} height={620} />
-      </div>
+    <section id="inicio" className="relative flex min-h-[92vh] items-center overflow-hidden px-6 md:px-12 lg:px-24">
       <div className="container-narrow relative z-10 w-full">
         <span className="mono mb-6 block">Sites · Automações · Sistemas sob medida</span>
         <h1 className="heading-xl mb-6 max-w-3xl">Seu negócio rodando sozinho.</h1>

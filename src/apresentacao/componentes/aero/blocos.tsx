@@ -153,8 +153,8 @@ export function BotoesContato({ className }: { className?: string }) {
 /** Faixa de fechamento das páginas, levando ao contato */
 export function ChamadaFinal() {
   return (
-    <section className="section-padding">
-      <div className="container-narrow rounded-3xl border border-border bg-gradient-to-br from-card to-background p-8 md:p-14">
+    <section id="chamada" className="section-padding">
+      <div className="container-narrow rounded-3xl border border-border bg-gradient-to-br from-card/70 to-background/30 p-8 md:p-14">
         <span className="mono mb-4 block">Vamos conversar</span>
         <h2 className="heading-lg mb-4">Qual tarefa da sua empresa deveria rodar sozinha?</h2>
         <p className="body-lg mb-8 max-w-2xl">
